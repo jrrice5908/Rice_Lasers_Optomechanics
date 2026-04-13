@@ -1,0 +1,3933 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[    169506,       3925]
+NotebookOptionsPosition[    166852,       3867]
+NotebookOutlinePosition[    167269,       3884]
+CellTagsIndexPosition[    167226,       3881]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Question 3", "Section",
+ CellFrame->{{0, 0}, {0, 1}},
+ CellChangeTimes->{{3.984670991343069*^9, 3.9846710296510468`*^9}},
+ Background->RGBColor[
+  1, 0.9, 1],ExpressionUUID->"230f8de7-0c25-4af6-a3e4-8103ab1402f5"],
+
+Cell[CellGroupData[{
+
+Cell["3.1 - Adjacency Matrix", "Subsection",
+ CellChangeTimes->{{3.9846710365466413`*^9, 
+  3.9846710525037737`*^9}},ExpressionUUID->"d3b4f70d-b6bf-4940-bc9a-\
+2f3b0f6224bf"],
+
+Cell[CellGroupData[{
+
+Cell["Nodal diagram", "Subsubsection",
+ CellChangeTimes->{{3.984673532301097*^9, 
+  3.984673537567018*^9}},ExpressionUUID->"781a9d53-2d13-457e-a151-\
+54791dedc18e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"nodes", "=", 
+    RowBox[{"{", 
+     RowBox[{"\"\<E_in\>\"", ",", "\[IndentingNewLine]", "\"\<E_x1\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_xcav\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_xcav2\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_xrefl\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_y1\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_ycav\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_ycav2\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_yrefl\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_as\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_refl\>\""}], "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "=", 
+    RowBox[{"{", "                   ", 
+     RowBox[{"(*", 
+      RowBox[{
+      "in", " ", "x1", " ", "xc", " ", "xc2", " ", "xr", " ", "y1", " ", "yc",
+        " ", "yc2", " ", "yr", " ", "as", " ", "r"}], "*)"}], 
+     "\[IndentingNewLine]", "  ", 
+     RowBox[{"(*", "E_in", "*)"}], "    ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "    ", "0", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_x1", "*)"}], "      ", 
+      RowBox[{"{", 
+       RowBox[{
+       "1", ",", "0", ",", "0", ",", " ", "0", ",", "    ", "0", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_xcav", "*)"}], "  ", 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "1", ",", "0", ",", " ", "1", ",", "   ", "0", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_xcav2", "*)"}], 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "1", ",", " ", "0", ",", "   ", "0", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_xrefl", "*)"}], 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "1", ",", "0", ",", " ", "1", ",", "   ", "0", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_y1", "*)"}], "       ", 
+      RowBox[{"{", 
+       RowBox[{
+       "1", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "0", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_ycav", "*)"}], "  ", 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "0", ",", "1", ",",
+         "  ", "0", ",", "1", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_ycav2", "*)"}], 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "0", ",", "0", ",",
+         "  ", "1", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_yrefl", "*)"}], 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "0", ",", "1", ",",
+         "  ", "0", ",", "1", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_as", "*)"}], "       ", 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "1", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "1", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_refl", "*)"}], "  ", 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "1", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "1", ",", "0", ",", "0"}], "}"}]}],
+      "}"}]}], ";"}], "\n", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MatrixForm", "[", 
+   RowBox[{"A", ",", 
+    RowBox[{"TableHeadings", "->", 
+     RowBox[{"{", 
+      RowBox[{"nodes", ",", "nodes"}], "}"}]}]}], "]"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "directed", " ", "graph", " ", "to", " ", "help", " ", "me", " ", 
+    "visualize"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"edges", "=", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"A", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "j"}], "]"}], "]"}], "==", "1"}], ",", 
+         RowBox[{"DirectedEdge", "[", 
+          RowBox[{
+           RowBox[{"nodes", "[", 
+            RowBox[{"[", "j", "]"}], "]"}], ",", 
+           RowBox[{"nodes", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", "Nothing"}], "]"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", 
+         RowBox[{"Length", "[", "nodes", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "nodes", "]"}]}], "}"}]}], "]"}], "]"}]}], 
+   ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Graph", "[", 
+  RowBox[{"edges", ",", 
+   RowBox[{"VertexLabels", "->", "\"\<Name\>\""}], ",", 
+   RowBox[{"ImageSize", "->", "Large"}], ",", 
+   RowBox[{"EdgeStyle", "->", "Pink"}], ",", 
+   RowBox[{"VertexStyle", "->", "Magenta"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.984672573914238*^9, 3.9846727016549053`*^9}, {
+  3.984672759019834*^9, 3.984673156941324*^9}, {3.984673194127005*^9, 
+  3.984673231751423*^9}, {3.984673298895013*^9, 3.9846734763490458`*^9}},
+ CellLabel->
+  "In[1249]:=",ExpressionUUID->"fcb5a063-27da-495d-9d6c-d0a12e13577b"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       StyleBox["\[Null]",
+        ShowStringCharacters->False], 
+       TagBox["\<\"E_in\"\>",
+        HoldForm], 
+       TagBox["\<\"E_x1\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xcav\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xcav2\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xrefl\"\>",
+        HoldForm], 
+       TagBox["\<\"E_y1\"\>",
+        HoldForm], 
+       TagBox["\<\"E_ycav\"\>",
+        HoldForm], 
+       TagBox["\<\"E_ycav2\"\>",
+        HoldForm], 
+       TagBox["\<\"E_yrefl\"\>",
+        HoldForm], 
+       TagBox["\<\"E_as\"\>",
+        HoldForm], 
+       TagBox["\<\"E_refl\"\>",
+        HoldForm]},
+      {
+       TagBox["\<\"E_in\"\>",
+        HoldForm], "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_x1\"\>",
+        HoldForm], "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xcav\"\>",
+        HoldForm], "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xcav2\"\>",
+        HoldForm], "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xrefl\"\>",
+        HoldForm], "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_y1\"\>",
+        HoldForm], "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_ycav\"\>",
+        HoldForm], "0", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0"},
+      {
+       TagBox["\<\"E_ycav2\"\>",
+        HoldForm], "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_yrefl\"\>",
+        HoldForm], "0", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0"},
+      {
+       TagBox["\<\"E_as\"\>",
+        HoldForm], "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0"},
+      {
+       TagBox["\<\"E_refl\"\>",
+        HoldForm], "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0"}
+     },
+     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{
+      "Columns" -> {False, True, {False}, False}, 
+       "Rows" -> {False, True, {False}, False}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}], 
+   "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "E_in", "E_x1", "E_xcav", "E_xcav2", "E_xrefl", "E_y1", "E_ycav", 
+       "E_ycav2", "E_yrefl", "E_as", "E_refl"}, {
+      "E_in", "E_x1", "E_xcav", "E_xcav2", "E_xrefl", "E_y1", "E_ycav", 
+       "E_ycav2", "E_yrefl", "E_as", "E_refl"}}]]]], "Output",
+ CellChangeTimes->{3.984672951893463*^9, 3.984673477698887*^9, 
+  3.984675060841819*^9},
+ CellLabel->
+  "Out[1251]//MatrixForm=",ExpressionUUID->"93f4064f-35a2-40fc-a4ab-\
+0fca25397f60"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{
+      "E_in", "E_x1", "E_y1", "E_xcav", "E_xrefl", "E_xcav2", "E_as", 
+       "E_refl", "E_ycav", "E_yrefl", "E_ycav2"}, {{{1, 2}, {1, 3}, {2, 4}, {
+       2, 5}, {4, 6}, {6, 4}, {6, 5}, {5, 7}, {5, 8}, {3, 9}, {3, 10}, {9, 
+       11}, {11, 9}, {11, 10}, {10, 7}, {10, 8}}, Null}, {EdgeStyle -> {
+         RGBColor[1, 0.5, 0.5]}, ImageSize -> Large, VertexLabels -> {"Name"},
+        VertexStyle -> {
+         RGBColor[1, 0, 1]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {RGBColor[1, 0.5, 0.5], Opacity[0.7], CapForm["Round"], Arrowheads[
+        Medium], 
+        ArrowBox[{{2.094840591816051, 0.}, {1.0001515018409939`, 
+         0.4066336748696273}}, 0.03819217824878586], 
+        ArrowBox[{{2.094840591816051, 0.}, {3.188070071478963, 
+         0.40685505820921763`}}, 0.03819217824878586], 
+        ArrowBox[{{1.0001515018409939`, 0.4066336748696273}, {0., 
+         0.49831915865615417`}}, 0.03819217824878586], 
+        ArrowBox[{{1.0001515018409939`, 0.4066336748696273}, {
+         1.1659244690150854`, 1.4347455140776624`}}, 0.03819217824878586], 
+        ArrowBox[{{3.188070071478963, 0.40685505820921763`}, {
+         4.187836187795883, 0.498884150130271}}, 0.03819217824878586], 
+        ArrowBox[{{3.188070071478963, 0.40685505820921763`}, {
+         3.0215408039567224`, 1.434753573599611}}, 0.03819217824878586], 
+        ArrowBox[
+         BezierCurveBox[{{0., 0.49831915865615417`}, {-0.07781711487585923, 
+          0.9161273330163012}, {0.10755143396473787`, 1.2985638310528993`}}], 
+         0.03819217824878586], 
+        ArrowBox[{{1.1659244690150854`, 1.4347455140776624`}, {
+         2.0934086118963084`, 2.0493903222211083`}}, 0.03819217824878586], 
+        ArrowBox[{{1.1659244690150854`, 1.4347455140776624`}, {
+         2.0939913125126868`, 1.492946251697887}}, 0.03819217824878586], 
+        ArrowBox[
+         BezierCurveBox[{{0.10755143396473787`, 1.2985638310528993`}, {
+          0.18536854884059817`, 0.8807556566927497}, {0., 
+          0.49831915865615417`}}], 0.03819217824878586], 
+        ArrowBox[{{0.10755143396473787`, 1.2985638310528993`}, {
+         1.1659244690150854`, 1.4347455140776624`}}, 0.03819217824878586], 
+        ArrowBox[
+         BezierCurveBox[{{4.187836187795883, 0.498884150130271}, {
+          4.002400572556934, 0.8811103707696089}, {4.080038900579577, 
+          1.2987891243172691`}}], 0.03819217824878586], 
+        ArrowBox[{{3.0215408039567224`, 1.434753573599611}, {
+         2.0934086118963084`, 2.0493903222211083`}}, 0.03819217824878586], 
+        ArrowBox[{{3.0215408039567224`, 1.434753573599611}, {
+         2.0939913125126868`, 1.492946251697887}}, 0.03819217824878586], 
+        ArrowBox[
+         BezierCurveBox[{{4.080038900579577, 1.2987891243172691`}, {
+          4.265474515818524, 0.9165629036779663}, {4.187836187795883, 
+          0.498884150130271}}], 0.03819217824878586], 
+        ArrowBox[{{4.080038900579577, 1.2987891243172691`}, {
+         3.0215408039567224`, 1.434753573599611}}, 0.03819217824878586]}, 
+       {RGBColor[1, 0, 1], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{2.094840591816051, 0.}, 0.03819217824878586], 
+         InsetBox["\<\"E_in\"\>", 
+          Offset[{2, 2}, {2.133032770064837, 0.03819217824878586}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{1.0001515018409939`, 0.4066336748696273}, 
+          0.03819217824878586], 
+         InsetBox["\<\"E_x1\"\>", 
+          Offset[{2, 2}, {1.0383436800897798, 0.44482585311841316}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{3.188070071478963, 0.40685505820921763`}, 
+          0.03819217824878586], 
+         InsetBox["\<\"E_y1\"\>", 
+          Offset[{2, 2}, {3.226262249727749, 0.4450472364580035}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0., 0.49831915865615417`}, 0.03819217824878586], 
+         InsetBox["\<\"E_xcav\"\>", 
+          Offset[{2, 2}, {0.03819217824878586, 0.53651133690494}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{1.1659244690150854`, 1.4347455140776624`}, 
+          0.03819217824878586], 
+         InsetBox["\<\"E_xrefl\"\>", 
+          Offset[{2, 2}, {1.2041166472638714, 1.4729376923264483}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.10755143396473787`, 1.2985638310528993`}, 
+          0.03819217824878586], 
+         InsetBox["\<\"E_xcav2\"\>", 
+          Offset[{2, 2}, {0.14574361221352372, 1.3367560093016853}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{2.0934086118963084`, 2.0493903222211083`}, 
+          0.03819217824878586], 
+         InsetBox["\<\"E_as\"\>", 
+          Offset[{2, 2}, {2.1316007901450944, 2.0875825004698942}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{2.0939913125126868`, 1.492946251697887}, 
+          0.03819217824878586], 
+         InsetBox["\<\"E_refl\"\>", 
+          Offset[{2, 2}, {2.1321834907614727, 1.531138429946673}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{4.187836187795883, 0.498884150130271}, 0.03819217824878586],
+          InsetBox["\<\"E_ycav\"\>", 
+          Offset[{2, 2}, {4.226028366044669, 0.5370763283790568}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{3.0215408039567224`, 1.434753573599611}, 
+          0.03819217824878586], 
+         InsetBox["\<\"E_yrefl\"\>", 
+          Offset[{2, 2}, {3.0597329822055084, 1.472945751848397}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{4.080038900579577, 1.2987891243172691`}, 
+          0.03819217824878586], 
+         InsetBox["\<\"E_ycav2\"\>", 
+          Offset[{2, 2}, {4.118231078828363, 1.336981302566055}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->"NetworkGraphics",
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->Large]], "Output",
+ CellChangeTimes->{3.984672951893463*^9, 3.984673477698887*^9, 
+  3.984675060908843*^9},
+ CellLabel->
+  "Out[1253]=",ExpressionUUID->"9092d4ed-add1-437c-8bbb-90e93fc8a3fb"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Actual matrix", "Subsubsection",
+ CellChangeTimes->{{3.984673551364295*^9, 
+  3.984673564016811*^9}},ExpressionUUID->"234aff8b-8f9c-470f-97d5-\
+269b363662cd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"nodes", "=", 
+    RowBox[{"{", 
+     RowBox[{"\"\<E_in\>\"", ",", "\[IndentingNewLine]", "\"\<E_x1\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_xcav\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_xcav2\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_xrefl\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_y1\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_ycav\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_ycav2\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_yrefl\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_as\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<E_refl\>\""}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"M", "=", 
+    RowBox[{"{", "                   ", 
+     RowBox[{"(*", 
+      RowBox[{
+      "in", " ", "x1", " ", "xc", " ", "xc2", " ", "xr", " ", "y1", " ", "yc",
+        " ", "yc2", " ", "yr", " ", "as", " ", "r"}], "*)"}], 
+     "\[IndentingNewLine]", "  ", 
+     RowBox[{"(*", "E_in", "*)"}], "    ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "    ", "0", ",", "0", ",",
+         "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_x1", "*)"}], "      ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"tbs", "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[Phi]x"}], "]"}]}], ",", "0", ",", "0", ",", 
+        " ", "0", ",", "    ", "0", ",", "0", ",", "  ", "0", ",", "0", ",", 
+        "    ", "0", ",", "0", ",", "0"}], "}"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"(*", "E_xcav", "*)"}], "  ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "txin", ",", "0", ",", " ", 
+        RowBox[{
+         RowBox[{"-", "rxin"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[CapitalPhi]x"}], "]"}]}], ",", "   ", "0", ",",
+         "0", ",", "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", 
+        "0"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_xcav2", "*)"}], 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0", ",", 
+        RowBox[{
+         RowBox[{"-", "rxend"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[CapitalPhi]x"}], "]"}]}], ",", " ", "0", ",", 
+        "   ", "0", ",", "0", ",", "  ", "0", ",", "0", ",", "    ", "0", ",",
+         "0", ",", "0"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_xrefl", "*)"}], 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "rxin", ",", "0", ",", " ", "txin", ",", "   ", "0", ",", 
+        "0", ",", "  ", "0", ",", "0", ",", "    ", "0", ",", "0", ",", "0"}],
+        "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_y1", "*)"}], "       ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "rbs"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[Phi]y"}], "]"}]}], ",", "0", ",", "0", ",", 
+        " ", "0", ",", "   ", "0", ",", "0", ",", "  ", "0", ",", "0", ",", 
+        "    ", "0", ",", "0", ",", "0"}], "}"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"(*", "E_ycav", "*)"}], "  ", 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "0", ",", "tyin", ",",
+         "  ", "0", ",", 
+        RowBox[{
+         RowBox[{"-", "ryin"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[CapitalPhi]y"}], "]"}]}], ",", "    ", "0", ",",
+         "0", ",", "0"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_ycav2", "*)"}], 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "0", ",", "0", ",",
+         "  ", 
+        RowBox[{
+         RowBox[{"-", "ryend"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[CapitalPhi]y"}], "]"}]}], ",", "0", ",", 
+        "    ", "0", ",", "0", ",", "0"}], "}"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"(*", "E_yrefl", "*)"}], 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", "0", ",", "ryin", ",",
+         "  ", "0", ",", "tyin", ",", "    ", "0", ",", "0", ",", "0"}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_as", "*)"}], "       ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", 
+        RowBox[{"rbs", "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[Phi]x"}], "]"}]}], ",", "0", ",", "  ", "0", ",",
+         "0", ",", "    ", 
+        RowBox[{"tbs", "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[Phi]y"}], "]"}]}], ",", "0", ",", "0"}], "}"}],
+       ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", "E_refl", "*)"}], "  ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0", ",", "0", ",", " ", "0", ",", "   ", 
+        RowBox[{"tbs", "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[Phi]x"}], "]"}]}], ",", "0", ",", "  ", "0", ",",
+         "0", ",", "    ", 
+        RowBox[{
+         RowBox[{"-", "rbs"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", "\[Phi]y"}], "]"}]}], ",", "0", ",", "0"}], 
+       "}"}]}], "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", 
+  RowBox[{"M", ",", 
+   RowBox[{"TableHeadings", "->", 
+    RowBox[{"{", 
+     RowBox[{"nodes", ",", "nodes"}], "}"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{
+  3.9846711062964563`*^9, {3.984673581657916*^9, 3.9846735838441753`*^9}, {
+   3.984673668533296*^9, 3.984673722169587*^9}, {3.984673799695822*^9, 
+   3.984673833463126*^9}, {3.9846739706796923`*^9, 3.9846739899774218`*^9}, {
+   3.984674284586934*^9, 3.9846742978642406`*^9}, {3.984675012592145*^9, 
+   3.984675024602242*^9}, {3.984675086872575*^9, 3.984675087225874*^9}, {
+   3.9846751669011383`*^9, 3.984675528908634*^9}, 3.9846756252041407`*^9, 
+   3.984675659703862*^9, {3.984675709863255*^9, 3.9846757192209883`*^9}, {
+   3.984675790483684*^9, 3.9846757926366367`*^9}, {3.984678000203964*^9, 
+   3.9846780281855*^9}, 3.984679165313965*^9},
+ CellLabel->"In[91]:=",ExpressionUUID->"702f0c78-77cb-4ffc-9134-266470d9ddc2"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       StyleBox["\[Null]",
+        ShowStringCharacters->False], 
+       TagBox["\<\"E_in\"\>",
+        HoldForm], 
+       TagBox["\<\"E_x1\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xcav\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xcav2\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xrefl\"\>",
+        HoldForm], 
+       TagBox["\<\"E_y1\"\>",
+        HoldForm], 
+       TagBox["\<\"E_ycav\"\>",
+        HoldForm], 
+       TagBox["\<\"E_ycav2\"\>",
+        HoldForm], 
+       TagBox["\<\"E_yrefl\"\>",
+        HoldForm], 
+       TagBox["\<\"E_as\"\>",
+        HoldForm], 
+       TagBox["\<\"E_refl\"\>",
+        HoldForm]},
+      {
+       TagBox["\<\"E_in\"\>",
+        HoldForm], "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_x1\"\>",
+        HoldForm], 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "tbs"}], "0", "0", 
+       "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xcav\"\>",
+        HoldForm], "0", "txin", "0", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]]}], " ", "rxin"}], 
+       "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xcav2\"\>",
+        HoldForm], "0", "0", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]]}], " ", "rxend"}],
+        "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xrefl\"\>",
+        HoldForm], "0", "rxin", "0", "txin", "0", "0", "0", "0", "0", "0", 
+       "0"},
+      {
+       TagBox["\<\"E_y1\"\>",
+        HoldForm], 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]]}], " ", "rbs"}], "0", 
+       "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_ycav\"\>",
+        HoldForm], "0", "0", "0", "0", "0", "tyin", "0", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]]}], " ", "ryin"}], 
+       "0", "0", "0"},
+      {
+       TagBox["\<\"E_ycav2\"\>",
+        HoldForm], "0", "0", "0", "0", "0", "0", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]]}], " ", "ryend"}],
+        "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_yrefl\"\>",
+        HoldForm], "0", "0", "0", "0", "0", "ryin", "0", "tyin", "0", "0", 
+       "0"},
+      {
+       TagBox["\<\"E_as\"\>",
+        HoldForm], "0", "0", "0", "0", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rbs"}], "0", "0", 
+       "0", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]], " ", "tbs"}], "0", "0"},
+      {
+       TagBox["\<\"E_refl\"\>",
+        HoldForm], "0", "0", "0", "0", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "tbs"}], "0", "0", 
+       "0", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]]}], " ", "rbs"}], "0", "0"}
+     },
+     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{
+      "Columns" -> {False, True, {False}, False}, 
+       "Rows" -> {False, True, {False}, False}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}], 
+   "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "E_in", "E_x1", "E_xcav", "E_xcav2", "E_xrefl", "E_y1", "E_ycav", 
+       "E_ycav2", "E_yrefl", "E_as", "E_refl"}, {
+      "E_in", "E_x1", "E_xcav", "E_xcav2", "E_xrefl", "E_y1", "E_ycav", 
+       "E_ycav2", "E_yrefl", "E_as", "E_refl"}}]]]], "Output",
+ CellChangeTimes->{3.984675626929558*^9, 3.984675795251379*^9, 
+  3.98467803085182*^9, 3.984679166676023*^9},
+ CellLabel->
+  "Out[93]//MatrixForm=",ExpressionUUID->"55467ff5-5b1a-47d7-b3ed-\
+bef6826eee68"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3.2 - Antisymmetric Port Field Derivations", "Subsection",
+ CellChangeTimes->{{3.984677273032456*^9, 
+  3.984677296296556*^9}},ExpressionUUID->"b963dd80-e08a-40b2-8f4d-\
+ff549b2b62ce"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"id", "=", 
+   RowBox[{"IdentityMatrix", "[", 
+    RowBox[{"Length", "[", "nodes", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"IminusM", "=", 
+   RowBox[{"id", "-", "M"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"T", "=", 
+    RowBox[{"Inverse", "[", "IminusM", "]"}]}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"MatrixForm", "[", 
+   RowBox[{"T", ",", 
+    RowBox[{"TableHeadings", "->", 
+     RowBox[{"{", 
+      RowBox[{"nodes", ",", "nodes"}], "}"}]}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"T", "[", 
+   RowBox[{"[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Position", "[", 
+       RowBox[{"nodes", ",", "\"\<E_as\>\""}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"Position", "[", 
+       RowBox[{"nodes", ",", "\"\<E_in\>\""}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TF", "[", 
+    RowBox[{"from_String", ",", "to_String"}], "]"}], ":=", 
+   RowBox[{"T", "[", 
+    RowBox[{"[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Position", "[", 
+        RowBox[{"nodes", ",", "to"}], "]"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"Position", "[", 
+        RowBox[{"nodes", ",", "from"}], "]"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<E_as/E_in = \>\"", ",", 
+    RowBox[{"FullSimplify", "[", 
+     RowBox[{"TF", "[", 
+      RowBox[{"\"\<E_in\>\"", ",", "\"\<E_as\>\""}], "]"}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.9846773347170687`*^9, 3.9846773891193542`*^9}, 
+   3.984677431663211*^9, {3.984677605909445*^9, 3.984677707267316*^9}, {
+   3.984677817662017*^9, 3.984677940948842*^9}, {3.9846779752506113`*^9, 
+   3.98467799737103*^9}, {3.9846781379958344`*^9, 3.98467815991945*^9}, {
+   3.984678213812415*^9, 3.984678234594211*^9}, {3.984678607656548*^9, 
+   3.9846787288802633`*^9}, {3.98467926182862*^9, 3.984679266108408*^9}, 
+   3.98467930435817*^9, {3.984680102015999*^9, 3.984680102659504*^9}, {
+   3.9846803740403233`*^9, 3.984680377792033*^9}},
+ CellLabel->
+  "In[172]:=",ExpressionUUID->"97c295fd-90e8-47d9-8526-fcc9f977c5ca"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       StyleBox["\[Null]",
+        ShowStringCharacters->False], 
+       TagBox["\<\"E_in\"\>",
+        HoldForm], 
+       TagBox["\<\"E_x1\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xcav\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xcav2\"\>",
+        HoldForm], 
+       TagBox["\<\"E_xrefl\"\>",
+        HoldForm], 
+       TagBox["\<\"E_y1\"\>",
+        HoldForm], 
+       TagBox["\<\"E_ycav\"\>",
+        HoldForm], 
+       TagBox["\<\"E_ycav2\"\>",
+        HoldForm], 
+       TagBox["\<\"E_yrefl\"\>",
+        HoldForm], 
+       TagBox["\<\"E_as\"\>",
+        HoldForm], 
+       TagBox["\<\"E_refl\"\>",
+        HoldForm]},
+      {
+       TagBox["\<\"E_in\"\>",
+        HoldForm], "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_x1\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ",
+           "rxend", " ", "rxin", " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "ryend", " ", "ryin", " ", "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin", " ", "tbs"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "1", "0", 
+       "0", "0", "0", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xcav\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "tbs", " ", 
+          "txin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "ryend", " ", "ryin", " ", "tbs", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{"txin", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]]}], " ", 
+          "rxin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxin", " ", "ryend", " ", "ryin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "0", 
+       "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xcav2\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+             RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]]}], " ", 
+          "rxend", " ", "tbs", " ", "txin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin", " ", "tbs", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]]}], " ", "rxend",
+           " ", "txin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]]}], " ", 
+          "rxend"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "0", 
+       "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_xrefl\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rxin", " ", 
+          "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ",
+           "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxin", " ", "ryend", " ", "ryin", " ", "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "ryend", " ", "ryin", " ", 
+          "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ", "rxend",
+           " ", "tbs", " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin", " ", "tbs", " ", 
+          SuperscriptBox["txin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{"rxin", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", 
+          SuperscriptBox["rxin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "rxin", " ", "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "ryend", " ", "ryin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", "rxend", " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin", " ", 
+          SuperscriptBox["txin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]]}], " ", "rxend",
+           " ", "txin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{"txin", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "1", "0", 
+       "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_y1\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]]}], " ", "rbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rbs", " ", 
+          "rxend", " ", "rxin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "ryend", " ", "ryin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "0", 
+       "0", "0", "1", "0", "0", "0", "0", "0"},
+      {
+       TagBox["\<\"E_ycav\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]]}], " ", "rbs", " ", 
+          "tyin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rbs", " ", 
+          "rxend", " ", "rxin", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "0", 
+       "0", "0", 
+       FractionBox[
+        RowBox[{"tyin", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]]}], " ", 
+          "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rxend",
+           " ", "rxin", " ", "ryin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "0", 
+       "0"},
+      {
+       TagBox["\<\"E_ycav2\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "ryend", " ", "tyin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "0", 
+       "0", "0", 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]]}], " ", "ryend",
+           " ", "tyin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rxend",
+           " ", "rxin", " ", "ryend", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]]}], " ", 
+          "ryend"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rxend",
+           " ", "rxin", " ", "ryend"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "0", 
+       "0"},
+      {
+       TagBox["\<\"E_yrefl\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]]}], " ", "rbs", " ", 
+          "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rbs", " ", 
+          "rxend", " ", "rxin", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "0", 
+       "0", "0", 
+       FractionBox[
+        RowBox[{"ryin", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin", " ", "ryin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rxend",
+           " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]]}], " ", "ryend",
+           " ", "tyin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rxend",
+           " ", "rxin", " ", "ryend", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{"tyin", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "1", "0", 
+       "0"},
+      {
+       TagBox["\<\"E_as\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rbs", " ",
+           "rxin", " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ",
+           "rbs", " ", "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}]], " ", "rbs", " ",
+           "ryin", " ", "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", 
+          "rbs", " ", "rxend", " ", "rxin", " ", "ryin", " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxin", " ", "ryend", " ", "ryin", " ", "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "ryend", " ", "ryin", " ", 
+          "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ", "rbs", " ",
+           "rxend", " ", "tbs", " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "ryend", " ", "ryin", " ", "tbs", " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "ryend", " ", "tbs", " ", 
+          SuperscriptBox["tyin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "tbs", " ", 
+          SuperscriptBox["tyin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rbs", " ", 
+          "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ",
+           "rbs", " ", "rxend", " ", 
+          SuperscriptBox["rxin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxin", " ", "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "ryend", " ", "ryin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ", "rbs", " ",
+           "rxend", " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "ryend", " ", "ryin", " ", 
+          SuperscriptBox["txin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+             RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]]}], " ", 
+          "rbs", " ", "rxend", " ", "txin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "ryend", " ", "ryin", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rbs", " ", 
+          "txin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "ryend", " ", "ryin", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ",
+           "rbs", " ", "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]], " ", "ryin", " ", 
+          "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rxend", " ", 
+          "rxin", " ", "ryin", " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "ryend", " ", 
+          SuperscriptBox["ryin", "2"], " ", "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "ryend",
+           " ", "tbs", " ", 
+          SuperscriptBox["tyin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rxend",
+           " ", "rxin", " ", "ryend", " ", "tbs", " ", 
+          SuperscriptBox["tyin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+             RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]]}], " ", 
+          "ryend", " ", "tbs", " ", "tyin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rxend",
+           " ", "rxin", " ", "ryend", " ", "tbs", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]], " ", "tbs", " ", 
+          "tyin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rxend", " ", 
+          "rxin", " ", "tbs", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rxend", " ", 
+          "rxin", " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "ryend", " ", "ryin", " ", "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin", " ", "tbs"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "1", "0"},
+      {
+       TagBox["\<\"E_refl\"\>",
+        HoldForm], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}]], " ", 
+          SuperscriptBox["rbs", "2"], " ", "ryin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", 
+          SuperscriptBox["rbs", "2"], " ", "rxend", " ", "rxin", " ", 
+          "ryin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+          SuperscriptBox["rbs", "2"], " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+          SuperscriptBox["rbs", "2"], " ", "rxend", " ", "rxin", " ", "ryend",
+           " ", 
+          SuperscriptBox["ryin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rxin", 
+          " ", 
+          SuperscriptBox["tbs", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ",
+           "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", 
+          SuperscriptBox["tbs", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxin", " ", "ryend", " ", "ryin", " ", 
+          SuperscriptBox["tbs", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "ryend", " ", "ryin", " ", 
+          SuperscriptBox["tbs", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ", "rxend",
+           " ", 
+          SuperscriptBox["tbs", "2"], " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin", " ", 
+          SuperscriptBox["tbs", "2"], " ", 
+          SuperscriptBox["txin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+          SuperscriptBox["rbs", "2"], " ", "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+          SuperscriptBox["rbs", "2"], " ", "rxend", " ", "rxin", " ", "ryend",
+           " ", 
+          SuperscriptBox["tyin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rxin", " ", 
+          "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ",
+           "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxin", " ", "ryend", " ", "ryin", " ", "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "ryend", " ", "ryin", " ", 
+          "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ", "rxend",
+           " ", "tbs", " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin", " ", "tbs", " ", 
+          SuperscriptBox["txin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+             RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]]}], " ", 
+          "rxend", " ", "tbs", " ", "txin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "ryend", " ", "ryin", " ", "tbs", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "tbs", " ", 
+          "txin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "ryend", " ", "ryin", " ", "tbs", " ", "txin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ",
+           "rxend", " ", "rxin", " ", "tbs"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "ryend", " ", "ryin", " ", "tbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin", " ", "tbs"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]]}], " ", "rbs", " ", 
+          "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rbs", " ", 
+          "rxend", " ", "rxin", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "ryend", " ", "tyin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]]}], " ", "rbs", " ", 
+          "tyin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rbs", " ", 
+          "rxend", " ", "rxin", " ", "tyin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]]}], " ", "rbs"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rbs", " ", 
+          "rxend", " ", "rxin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "ryend", " ", "ryin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rbs", " ", "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}], 
+        RowBox[{"1", "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ",
+           "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}]], "0", "1"}
+     },
+     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{
+      "Columns" -> {False, True, {False}, False}, 
+       "Rows" -> {False, True, {False}, False}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    {OutputFormsDump`HeadedRows, OutputFormsDump`HeadedColumns}], 
+   "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[
+   BoxForm`e$, 
+    TableHeadings -> {{
+      "E_in", "E_x1", "E_xcav", "E_xcav2", "E_xrefl", "E_y1", "E_ycav", 
+       "E_ycav2", "E_yrefl", "E_as", "E_refl"}, {
+      "E_in", "E_x1", "E_xcav", "E_xcav2", "E_xrefl", "E_y1", "E_ycav", 
+       "E_ycav2", "E_yrefl", "E_as", "E_refl"}}]]]], "Output",
+ CellChangeTimes->{
+  3.9846773916097097`*^9, 3.984677433866056*^9, 3.984677613799842*^9, 
+   3.984677942918851*^9, 3.98467803850663*^9, 3.984678275348226*^9, 
+   3.984678696906144*^9, 3.984678731304779*^9, {3.984679171806324*^9, 
+   3.9846791773142357`*^9}, 3.9846792677965813`*^9, 3.984679305995915*^9, 
+   3.984680103901917*^9, 3.984680379678548*^9},
+ CellLabel->
+  "Out[175]//MatrixForm=",ExpressionUUID->"28b3e2c7-f44b-4464-b25f-\
+fe8dae12eadf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}]], " ", "rbs", " ", 
+     "rxin", " ", "tbs"}], "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ", 
+     "rbs", " ", "rxend", " ", 
+     SuperscriptBox["rxin", "2"], " ", "tbs"}], "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}]], " ", "rbs", " ", 
+     "ryin", " ", "tbs"}], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}]}]], " ", "rbs", " ",
+      "rxend", " ", "rxin", " ", "ryin", " ", "tbs"}], "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+     "rbs", " ", "rxin", " ", "ryend", " ", "ryin", " ", "tbs"}], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+     "rbs", " ", "rxend", " ", 
+     SuperscriptBox["rxin", "2"], " ", "ryend", " ", "ryin", " ", "tbs"}], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+     "rbs", " ", "ryend", " ", 
+     SuperscriptBox["ryin", "2"], " ", "tbs"}], "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+     "rbs", " ", "rxend", " ", "rxin", " ", "ryend", " ", 
+     SuperscriptBox["ryin", "2"], " ", "tbs"}], "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+       RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}]}]], " ", "rbs", " ", 
+     "rxend", " ", "tbs", " ", 
+     SuperscriptBox["txin", "2"]}], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}], "+", 
+       RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+     "rbs", " ", "rxend", " ", "ryend", " ", "ryin", " ", "tbs", " ", 
+     SuperscriptBox["txin", "2"]}], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+       RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ", 
+     "ryend", " ", "tbs", " ", 
+     SuperscriptBox["tyin", "2"]}], "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}], "+", 
+       RowBox[{"\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", "rbs", " ", 
+     "rxend", " ", "rxin", " ", "ryend", " ", "tbs", " ", 
+     SuperscriptBox["tyin", "2"]}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"1", "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+     "rxend", " ", "rxin"}], "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+     "ryend", " ", "ryin"}], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}], "+", 
+       RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]}]], " ", 
+     "rxend", " ", "rxin", " ", "ryend", " ", "ryin"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{
+  3.9846773916097097`*^9, 3.984677433866056*^9, 3.984677613799842*^9, 
+   3.984677942918851*^9, 3.98467803850663*^9, 3.984678275348226*^9, 
+   3.984678696906144*^9, 3.984678731304779*^9, {3.984679171806324*^9, 
+   3.9846791773142357`*^9}, 3.9846792677965813`*^9, 3.984679305995915*^9, 
+   3.984680103901917*^9, 3.984680379683579*^9},
+ CellLabel->
+  "Out[176]=",ExpressionUUID->"40122f8e-17d0-45e4-93f6-62a791b9a9f1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"E_as/E_in = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"rbs", " ", "tbs", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]x"}]], " ", 
+          "rxin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{"\[Phi]x", "+", "\[CapitalPhi]x"}], ")"}]}]], " ", 
+          "rxend", " ", 
+          SuperscriptBox["rxin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Phi]y"}]], " ", 
+          "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{"\[CapitalPhi]x", "+", "\[Phi]y"}], ")"}]}]], " ", 
+          "rxend", " ", "rxin", " ", "ryin"}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{"\[Phi]x", "+", "\[CapitalPhi]y"}], ")"}]}]], " ", 
+          "rxin", " ", "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{
+             "\[Phi]x", "+", "\[CapitalPhi]x", "+", "\[CapitalPhi]y"}], 
+             ")"}]}]], " ", "rxend", " ", 
+          SuperscriptBox["rxin", "2"], " ", "ryend", " ", "ryin"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{"\[Phi]y", "+", "\[CapitalPhi]y"}], ")"}]}]], " ", 
+          "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{
+             "\[CapitalPhi]x", "+", "\[Phi]y", "+", "\[CapitalPhi]y"}], 
+             ")"}]}]], " ", "rxend", " ", "rxin", " ", "ryend", " ", 
+          SuperscriptBox["ryin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"2", " ", "\[Phi]x"}], "+", "\[CapitalPhi]x"}], 
+             ")"}]}]], " ", "rxend", " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"2", " ", "\[Phi]x"}], "+", "\[CapitalPhi]x", "+", 
+              RowBox[{"2", " ", "\[CapitalPhi]y"}]}], ")"}]}]], " ", "rxend", 
+          " ", "ryend", " ", "ryin", " ", 
+          SuperscriptBox["txin", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"2", " ", "\[Phi]y"}], "+", "\[CapitalPhi]y"}], 
+             ")"}]}]], " ", "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"\[ImaginaryI]", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"2", " ", 
+               RowBox[{"(", 
+                RowBox[{"\[CapitalPhi]x", "+", "\[Phi]y"}], ")"}]}], "+", 
+              "\[CapitalPhi]y"}], ")"}]}]], " ", "rxend", " ", "rxin", " ", 
+          "ryend", " ", 
+          SuperscriptBox["tyin", "2"]}]}], ")"}]}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]x"}]], " ", 
+          "rxend", " ", "rxin"}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]y"}]], " ", 
+          "ryend", " ", "ryin"}]}], ")"}]}], ")"}]}], ")"}]}],
+  SequenceForm[
+  "E_as/E_in = ", $CellContext`rbs (-1 + 
+     E^(Complex[
+         0, 2] $CellContext`\[CapitalPhi]x) $CellContext`rxend \
+$CellContext`rxin)^(-1) (-1 + 
+     E^(Complex[
+         0, 2] $CellContext`\[CapitalPhi]y) $CellContext`ryend \
+$CellContext`ryin)^(-1) $CellContext`tbs (
+    E^(Complex[0, 2] $CellContext`\[Phi]x) $CellContext`rxin - 
+    E^(Complex[
+       0, 2] ($CellContext`\[Phi]x + $CellContext`\[CapitalPhi]x)) \
+$CellContext`rxend $CellContext`rxin^2 - 
+    E^(Complex[0, 2] $CellContext`\[Phi]y) $CellContext`ryin + 
+    E^(Complex[
+        0, 2] ($CellContext`\[CapitalPhi]x + $CellContext`\[Phi]y)) \
+$CellContext`rxend $CellContext`rxin $CellContext`ryin - 
+    E^(Complex[
+       0, 2] ($CellContext`\[Phi]x + $CellContext`\[CapitalPhi]y)) \
+$CellContext`rxin $CellContext`ryend $CellContext`ryin + 
+    E^(Complex[
+        0, 2] ($CellContext`\[Phi]x + $CellContext`\[CapitalPhi]x + \
+$CellContext`\[CapitalPhi]y)) $CellContext`rxend $CellContext`rxin^2 \
+$CellContext`ryend $CellContext`ryin + 
+    E^(Complex[
+        0, 2] ($CellContext`\[Phi]y + $CellContext`\[CapitalPhi]y)) \
+$CellContext`ryend $CellContext`ryin^2 - 
+    E^(Complex[
+       0, 2] ($CellContext`\[CapitalPhi]x + $CellContext`\[Phi]y + \
+$CellContext`\[CapitalPhi]y)) $CellContext`rxend $CellContext`rxin \
+$CellContext`ryend $CellContext`ryin^2 - 
+    E^(Complex[0, 1] (
+       2 $CellContext`\[Phi]x + $CellContext`\[CapitalPhi]x)) \
+$CellContext`rxend $CellContext`txin^2 + 
+    E^(Complex[0, 1] (2 $CellContext`\[Phi]x + $CellContext`\[CapitalPhi]x + 
+        2 $CellContext`\[CapitalPhi]y)) $CellContext`rxend $CellContext`ryend \
+$CellContext`ryin $CellContext`txin^2 + 
+    E^(Complex[0, 1] (
+        2 $CellContext`\[Phi]y + $CellContext`\[CapitalPhi]y)) \
+$CellContext`ryend $CellContext`tyin^2 - 
+    E^(Complex[0, 1] (
+       2 ($CellContext`\[CapitalPhi]x + $CellContext`\[Phi]y) + $CellContext`\
+\[CapitalPhi]y)) $CellContext`rxend $CellContext`rxin $CellContext`ryend \
+$CellContext`tyin^2)],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.984677391618581*^9, 3.984677433871348*^9, 3.984677614826832*^9, 
+   3.984677942969763*^9, 3.9846780394576387`*^9, 3.984678275353784*^9, 
+   3.984678696920302*^9, 3.984678731314705*^9, {3.984679172261229*^9, 
+   3.984679177324686*^9}, 3.9846792684161158`*^9, 3.984679306009843*^9, 
+   3.984680103908489*^9, 3.9846803796854553`*^9},
+ CellLabel->
+  "During evaluation of \
+In[172]:=",ExpressionUUID->"c2a9b472-9c40-4001-94b9-a20a27c004bb"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3.3 - E_as Simplifications", "Subsection",
+ CellChangeTimes->{{3.984680329743236*^9, 
+  3.984680338884818*^9}},ExpressionUUID->"9f289dd1-f193-462b-9caa-\
+ddfb4680854c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"stuffSub", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"rbs", "->", 
+      RowBox[{"1", "/", 
+       RowBox[{"Sqrt", "[", "2", "]"}]}]}], ",", 
+     RowBox[{"tbs", "->", 
+      RowBox[{"1", "/", 
+       RowBox[{"Sqrt", "[", "2", "]"}]}]}], ",", 
+     RowBox[{"rxend", "->", "r2"}], ",", 
+     RowBox[{"ryend", "->", "r2"}], ",", " ", 
+     RowBox[{"rxin", "->", " ", "r1"}], ",", " ", 
+     RowBox[{"ryin", "->", "r1"}], ",", 
+     RowBox[{"txin", "->", " ", "t1"}], ",", " ", 
+     RowBox[{"tyin", "->", "t1"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"phaseSub", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\[CapitalPhi]x", "->", 
+       RowBox[{"\[CapitalPhi]c", "+", "\[CapitalPhi]d"}]}], ",", 
+      RowBox[{"\[CapitalPhi]y", "->", 
+       RowBox[{"\[CapitalPhi]c", "-", "\[CapitalPhi]d"}]}], ",", 
+      RowBox[{"\[Phi]x", "->", "0"}], ",", " ", 
+      RowBox[{"\[Phi]y", "->", "0"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<E_as/E_in = \>\"", ",", 
+    RowBox[{"FullSimplify", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"TF", "[", 
+        RowBox[{"\"\<E_in\>\"", ",", "\"\<E_as\>\""}], "]"}], "/.", " ", 
+       "phaseSub"}], "/.", " ", "stuffSub"}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{
+  3.9846800678076468`*^9, {3.9846801087999983`*^9, 3.984680250383299*^9}, {
+   3.984680296539143*^9, 3.98468029913332*^9}, {3.98468036405729*^9, 
+   3.984680366399349*^9}},
+ CellLabel->
+  "In[179]:=",ExpressionUUID->"ec755695-bfdc-42fa-957a-e1febb365059"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"E_as/E_in = \"\>", "\[InvisibleSpace]", 
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"\[ImaginaryI]", " ", 
+       RowBox[{"(", 
+        RowBox[{"\[CapitalPhi]c", "+", "\[CapitalPhi]d"}], ")"}]}]], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]d"}]]}], ")"}], 
+     " ", "r2", " ", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]c"}]], " ", 
+        "r1", " ", "r2"}]}], ")"}], " ", 
+     SuperscriptBox["t1", "2"]}], 
+    RowBox[{"2", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]d"}]], "-", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[CapitalPhi]c"}]], " ", 
+        "r1", " ", "r2"}]}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+          RowBox[{"(", 
+           RowBox[{"\[CapitalPhi]c", "+", "\[CapitalPhi]d"}], ")"}]}]], " ", 
+        "r1", " ", "r2"}]}], ")"}]}]]}],
+  SequenceForm[
+  "E_as/E_in = ", Rational[1, 2] 
+   E^(Complex[
+      0, 1] ($CellContext`\[CapitalPhi]c + $CellContext`\[CapitalPhi]d)) (-1 + 
+    E^(Complex[0, 2] $CellContext`\[CapitalPhi]d)) $CellContext`r2 (
+     E^(Complex[0, 2] $CellContext`\[CapitalPhi]d) - 
+     E^(Complex[
+        0, 2] $CellContext`\[CapitalPhi]c) $CellContext`r1 \
+$CellContext`r2)^(-1) (1 + 
+    E^(Complex[
+        0, 2] $CellContext`\[CapitalPhi]c) $CellContext`r1 $CellContext`r2) \
+(-1 + E^(Complex[
+         0, 2] ($CellContext`\[CapitalPhi]c + $CellContext`\[CapitalPhi]d)) \
+$CellContext`r1 $CellContext`r2)^(-1) $CellContext`t1^2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9846803011187487`*^9, 3.984680387133115*^9},
+ CellLabel->
+  "During evaluation of \
+In[179]:=",ExpressionUUID->"a5c65d18-8792-4bb1-91de-f58b3ac1420c"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3.4 - Interpretation", "Subsection",
+ CellChangeTimes->{{3.984680857678388*^9, 
+  3.984680864868178*^9}},ExpressionUUID->"7611c7df-c083-4551-8579-\
+a44b7030e80f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "Parameters", "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"paramSub", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"r1", "->", 
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"1", "-", "0.10"}], "]"}]}], ",", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"ITM", ":", "T"}], "=", 
+         RowBox[{
+          RowBox[{"10", "%", " ", "so", " ", "r"}], "=", 
+          RowBox[{"sqrt", 
+           RowBox[{"(", "0.9", ")"}]}]}]}], "*)"}], 
+       RowBox[{"r2", "->", "1"}], ",", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ETM", ":", "T"}], "=", "0"}], ",", 
+         RowBox[{"perfect", " ", "mirror"}]}], "*)"}], 
+       RowBox[{"t1", "->", 
+        RowBox[{"Sqrt", "[", "0.10", "]"}]}], ",", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"ITM", ":", "t"}], "=", 
+         RowBox[{"sqrt", 
+          RowBox[{"(", "T", ")"}]}]}], "*)"}], 
+       RowBox[{"lx", "->", "5"}], ",", 
+       RowBox[{"ly", "->", "5"}], ",", 
+       RowBox[{"(*", 
+        RowBox[{"short", " ", "Michelson", " ", 
+         RowBox[{"arms", "[", "m", "]"}]}], "*)"}], 
+       RowBox[{"Lx", "->", "4000"}], ",", 
+       RowBox[{"Ly", "->", "4000"}], ",", 
+       RowBox[{"(*", 
+        RowBox[{"FP", " ", "arm", " ", 
+         RowBox[{"lengths", "[", "m", "]"}]}], "*)"}], 
+       RowBox[{"\[Lambda]", "->", 
+        RowBox[{"1064", "*", 
+         RowBox[{"10", "^", 
+          RowBox[{"-", "9"}]}]}]}]}], "  ", 
+      RowBox[{"(*", 
+       RowBox[{"wavelength", "[", "m", "]"}], "*)"}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"k", "=", 
+     RowBox[{"2", "*", 
+      RowBox[{"Pi", "/", 
+       RowBox[{"(", 
+        RowBox[{"\[Lambda]", "/.", " ", "paramSub"}], ")"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Common", " ", "and", " ", "differential", " ", "phases"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"\[CapitalPhi]c", "=", 
+      RowBox[{"k", "*", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Lx", "+", "Ly"}], ")"}], "/", "2"}]}]}], ",", 
+     RowBox[{"\[CapitalPhi]d", " ", "sweeps"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"PhicVal", "=", 
+     RowBox[{"k", "*", 
+      RowBox[{"(", "4000", ")"}]}]}], ";"}], "   ", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"symmetric", " ", "arms", " ", "so", " ", "\[CapitalPhi]c"}], "=", 
+     RowBox[{"k", "*", "L"}]}], "*)"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Transfer", " ", "function"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"TFexpr", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Exp", "[", 
+         RowBox[{"I", "*", 
+          RowBox[{"(", 
+           RowBox[{"\[CapitalPhi]c", "+", "\[CapitalPhi]d"}], ")"}]}], "]"}], 
+        "*", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"2", "*", "I", "*", "\[CapitalPhi]d"}], "]"}]}], ")"}], "*",
+         "r2", "*", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{
+           RowBox[{"Exp", "[", 
+            RowBox[{"2", "*", "I", "*", "\[CapitalPhi]c"}], "]"}], "*", "r1", 
+           "*", "r2"}]}], ")"}], "*", 
+        RowBox[{"t1", "^", "2"}]}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Exp", "[", 
+           RowBox[{"2", "*", "I", "*", "\[CapitalPhi]d"}], "]"}], "-", 
+          RowBox[{
+           RowBox[{"Exp", "[", 
+            RowBox[{"2", "*", "I", "*", "\[CapitalPhi]c"}], "]"}], "*", "r1", 
+           "*", "r2"}]}], ")"}], "*", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", 
+          RowBox[{
+           RowBox[{"Exp", "[", 
+            RowBox[{"2", "*", "I", "*", 
+             RowBox[{"(", 
+              RowBox[{"\[CapitalPhi]c", "+", "\[CapitalPhi]d"}], ")"}]}], 
+            "]"}], "*", "r1", "*", "r2"}]}], ")"}]}], ")"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"TFsub", "=", 
+     RowBox[{"TFexpr", "/.", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"r1", "->", 
+         RowBox[{"Sqrt", "[", "0.9", "]"}]}], ",", 
+        RowBox[{"r2", "->", "1"}], ",", 
+        RowBox[{"t1", "->", 
+         RowBox[{"Sqrt", "[", "0.1", "]"}]}], ",", 
+        RowBox[{"\[CapitalPhi]c", "->", "PhicVal"}]}], "}"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Simple", " ", "Michelson", " ", "TF", " ", "for", " ", "comparison", " ", 
+     RowBox[{"(", 
+      RowBox[{"no", " ", "arm", " ", "cavities"}], ")"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"E_as", "/", "E_in"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "2"}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"e", "^", 
+           RowBox[{"{", 
+            RowBox[{"2", "i\[CurlyPhi]x"}], "}"}]}], "-", 
+          RowBox[{"e", "^", 
+           RowBox[{"{", 
+            RowBox[{"2", "i\[CurlyPhi]y"}], "}"}]}]}], ")"}]}], "->", 
+       RowBox[{"i", "*", "sin", 
+        RowBox[{"(", "\[CapitalPhi]d", ")"}], " ", "at", " ", 
+        "\[CapitalPhi]c"}]}], "=", "0"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"TFmich", "=", 
+     RowBox[{"I", "*", 
+      RowBox[{"Sin", "[", "\[CapitalPhi]d", "]"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "Plot", " ", "over", " ", "a", " ", "few", " ", "linewidths", " ", 
+      "around", " ", "\[CapitalPhi]d"}], "=", "0"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Cavity", " ", 
+      RowBox[{"linewidth", ":", 
+       RowBox[{
+        RowBox[{"\[Delta]\[CapitalPhi]", "~", "T"}], "/", 
+        RowBox[{"(", "2", ")"}]}]}]}], "=", 
+     RowBox[{"0.05", " ", "rad"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"PhidRange", "=", "0.2"}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Re", "[", "TFsub", "]"}], ",", 
+       RowBox[{"Im", "[", "TFsub", "]"}], ",", 
+       RowBox[{"Re", "[", "TFmich", "]"}], ",", 
+       RowBox[{"Im", "[", "TFmich", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\[CapitalPhi]d", ",", 
+       RowBox[{"-", "PhidRange"}], ",", "PhidRange"}], "}"}], ",", 
+     RowBox[{"PlotLegends", "->", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Re[FPMI]\>\"", ",", "\"\<Im[FPMI]\>\"", 
+        ",", "\"\<Re[Michelson]\>\"", ",", "\"\<Im[Michelson]\>\""}], "}"}]}],
+      ",", 
+     RowBox[{"PlotStyle", "->", 
+      RowBox[{"{", 
+       RowBox[{"Blue", ",", "Red", ",", "Dashed", ",", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", "Dashed"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"AxesLabel", "->", 
+      RowBox[{"{", 
+       RowBox[{"\"\<\\!\\(\\*SubscriptBox[\\(\[CapitalPhi]\\), \
+\\(d\\)]\\)\>\"", 
+        ",", "\"\<\\!\\(\\*FractionBox[\\(E_as\\), \\(E_in\\)]\\)\>\""}], 
+       "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", 
+      "->", "\"\<FPMI vs Michelson AS port transfer function\>\""}], ",", 
+     RowBox[{"GridLines", "->", "Automatic"}], ",", 
+     RowBox[{"PlotRange", "->", "All"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{3.984680868826482*^9},
+ CellLabel->
+  "In[182]:=",ExpressionUUID->"479b35cf-a7c4-4b90-9d5a-1f2447d1cc8c"],
+
+Cell[BoxData[
+ TemplateBox[{
+   GraphicsBox[
+    InterpretationBox[{
+      TagBox[{{{}, {}, 
+         TagBox[{
+           RGBColor[0, 0, 1], 
+           AbsoluteThickness[2], 
+           Opacity[1.], 
+           LineBox[CompressedData["
+1:eJwt1Ps3lAkYwHFbto2TS00mDMJEqGHmFZLyJNNVmyIqtRYzSZJxqQzJUuMy
+WqoxItdMibODqS2SZR538560KzJbYV3KkrVtFzs4sbY9Z3/4nu9/8DEL4nkd
+X6Smpvb15/67RefytBs3SJRF957fHk+gn/hNmDibxPacrxrWxRKYeazpwJVr
+JPKfO4h1zxGomoygJQtJ9KjMFw3wCGzX6qqKiCUxTDu8hs8hMNgzs3fnERIj
+fw4ruLuHwPJuTbpKn8QuZnyDgwGB618slnvlKlApfTKZUsPCmAHe2xNJHUh1
+o/O6hpnoYW85MBPfjjHjIYt/NGLitXrHotILbTjP/hgrfGSLhluajlSFtKLK
+dF/ULI2BtjrXe4jgFtwcykpPLViHguevd1L2NaNPdqcyY8Ea9/ZmZOq4NKFL
+5N6oK2FWWERPykrd1Iiecv7ihypLPN7db/FwlxxzBnb8cZpjgRK1vSW+bvVY
+ccpd1jZJx5ZsXhODXYdXFeUp1O/M8aRBqrKeVotaQY4Ppj+aIn2rfYi7fg0G
+vyWHwjRWY5BPz9ukN/dxmPWlwYp3NEx5utZwpvUeZs3mi56M6eP5YTPB43QZ
+PqUZ7BnTo+LUXF8D1UGKOyTSjNGlFMz2x3f7rctwnL02Lo2li26F6Vqf2iVY
+sWkFtXqLJp7yvjBm9aEAuc42F087qePtGac7zhNiHMxp9ijeMC8fkQkiD4am
+oRo9Zfffmu/lG7UvqEY8I1Ctb2J4Y5tSbvzDNZ+n5jx43scf9/qp13XR+ImE
+PIoQBAW8XIuk967hlpzAoHwxWHWaZJ9pn3PtKGqWrfIrBOqRpRSTRHVQbCl3
+mJ6WwJuWEjuvi5qg/vv2vI8zd6Asztk+T0cXHO99Wpm4Xwp5tORGGyMKbHVM
+u27sLwOdRw2cUyo9aFT5jJVK74FfiVC6pFUf+l5Fayf33If+Iogc76LBCGO+
+NkxZDQ7+4kWdUhPgCkXhBeq1IBHaRZ57ZQrdblllz7TqIIe74+Saw+ZwLGvQ
+pXdZPWRtr2T+006HQJVTn7GTHC7zJhse+FqAdd98gpNJI2hxKi+JnljCYMuo
+nsCxCRZCbJMnj1sBPTb65YPdzfCXWcJjs1lrGOivGTq5pwUm+m2EUdHrwGd3
+4mRzQCvMSX6bYukywJ274HyT2wYTu8jTOmJbkHusqQ7ktMN4CTczWIMJKpdf
+HDpiOuAMf/h14ksm3H5pN3M3VgFNbMcv9IpZEBrEy2MmKMB3aDklRcIC5kTV
+5rsXFWA+z9s2XcqC+llGkuyyAuzCAu68qGDBM/31mlWFCqB6hsbcrGOB+iEr
+I2mTAqpT6qT2ShZwe0y3lmqQMFbhIozQIsDmaMDIGm0SvF29D43qEvBupFhw
+ewUJGk417n4rCYj/YELeopFAL4qJYdMIEC839pIwSOAb3/AwtCag1dOAW3yA
+BK3Dg9LHbALSfz28ZLUvCaKhW4HbdhGw/9vc8iI/EjI0DBwfeRDQH77qz0IO
+CfUFti5lXgRMZeidKzhLwjeXamsEAQTU6fnoG8WRcLTjftAch4DEQnFdfgIJ
+Mr6IceYEAcsqKQt5qSREZVFMueEEdG/wLjH8ngS7muad/ZEE5NaL3POukvC6
+Njzz4FkC/NndowbZJMTNGk918gn43y8IUSr5n/2CfwFKVVhT
+            "]]}, Annotation[#, "Charting`Private`Tag#1"]& ], 
+         TagBox[{
+           RGBColor[1, 0, 0], 
+           AbsoluteThickness[2], 
+           Opacity[1.], 
+           LineBox[CompressedData["
+1:eJwtlH0w1Hkcx4WryUQPwtpsF1IrVpLdjVUf235dDyIJoYY8pXCtchdb7EWb
+jVqiZdZ66BIxFJoeTm7z8Wx/c0ZZDz3glAo15Ypm04Pp3Mz98Zr3v6+Z98zL
+MlzoG6Wro6PjNcd/a9O19FxBAYXfprfzzHIJBstfx8nzKOQdYiaVZRHMOtC8
+JzuHQmpk3lnH8wS1b+NXnM2gcJztJvWUEOwwfFgTL6Jw1db6h2knCB7andW/
+LYjC+KDJ8elggpUaA2stjcKI8YmBt9YE7Z/oNfoq1Ljgi2ot664AE4eFk9Gp
+nTgglywroLai58Y1wzPJHdirtfEOnORjjopTUp7SjoF2xnFPaXykb24Oqjnc
+hv6xaqHGyR0dFuf3Oh1qRfl0sJXRn1tQ8vjlNmPvFpzqK9yU/48b7uqXZS3m
+NeO+iZ3otJ6HJdapl6SuTShTQwQ32wWjNEM2f2xvRPbIwncJ3Vws1dl1JYCv
+wp5+5lQ6i4OtecJmFmnA7kCZS06+Mx4xlw6oVtRj4QvH6b6/ndDafeNhAe0u
+Fqiw1OynDRju3zuZ+voWMuZVXncwX4/pPWvpM2030d8gXGB3zw5PPbeU/JVZ
+i4V+g+LyPCZ+/DZ435RdjcwFXhwfRxvMC8H3PrYV+Czrwu3q+VbIL840/NpR
+ilJpdvZnNgNj96aMM6eKkJ7LtGelmmLZDPeayxs5Xkh/YhDHX4KjtZJjfjHn
+8HpsVVLnjC5uMkrRju6Ox8gHxFU36HUjoyrHv8dKCLM33C/qbZjYojsRLVYa
+Z8DzgmFBYLIeHF0TERZeKAeR2FdB118CnSUttWbBxZBa9+a4mcYU1Jsr2Z8+
+lUJ8/SZWcBoD9Mc8lNMz18D+q2Zs7JklcG5+XX7apxoG0+S+rR424M45l88I
+qYU2GeErjzOhSes/Xl59E4Z6chyCcuxg8EWC0dneWzDQrwj4TesAo6zZ+riB
+OxAVWiWYXboBIjNyjxbp14OFYdT+E11OoOFfqugzbACpuVW6S6wzHLg0wutf
+pIJHP7u2ntLjQJiWO8jgNkJNsZDj2cQF28FZMXdlE9TEWP8iDHOBkdZXJhJO
+Mzyv8l3+cC0PrEUJT2/vaAGLplWxxybcYHjo7rMjO1vBo/3jmSDZFvDfcfpt
+y8E2mJdh+4HYu4Mg8rvL75HtYPsl3lpXnw+NnqvvhEV0wL39lYtHH/NBy3vA
+7kzshKQib8/E5q1Q9nT9TJ1IDVUqWii9SAAx4UKlo1gNRteJx+RlATi+qXGr
+S1NDjOmkZ8tVAag+s1Jrz6vB2eK+Xky1APpo9gY1xWoQvwyIVjUIQH8f06K6
+WQ0iUZdP9BMBRPauci9fSEE474fhflMC6/YfHF1tRMHs4bGRG3QC70cvS8qW
+UeDXZamfvpJA8tRK6uoKCm5/aKnjrCEgX8rwLWVR8E3vWGEBm0DbbvPIy3so
+qEi4qIryI5D5KHD+jwEUaHwCHkMgAZ9QRWVJMAUyxSsT+gECQ0fN3hVHULBg
+e7K2O4LAR5nJiaJfKYiO9vJ2TSDQYOJPszhJzf1rKTJJJHC6WN5QKKZAkfKp
+/f1JAotuGH9XSud8Y1raK9IIaJz3XqFfoGCiqj3pTDoBhSpXoLxIgYo25hWa
+SSCEaF6Z51Gge2udBy+LwP/9gu4kZchcv+BfFOtYkg==
+            "]]}, Annotation[#, "Charting`Private`Tag#2"]& ], 
+         TagBox[{
+           RGBColor[0.455, 0.7, 0.21], 
+           AbsoluteThickness[2], 
+           Opacity[1.], 
+           Dashing[{Small, Small}], 
+           LineBox[CompressedData["
+1:eJxF1I0vFHAcBvCbrC3zMknOyykdormy5C7JYjR5KW+dIhPnvGZOszLFzbWT
+l6KOO+O4k8vbunXHRHa7jntxx2ord6gcU1cSk5nsXJOpNn1/z/bs2ecfeNwo
+tPhMMwwGc/Fv/63HG9uq5ubxYcxuktlL+WwOcl2KPO4RC9m4UuhcUY2stnon
+KixBzoqpmwpPQu7RWuCNWGSfj3tk8U1j4OI52mo2QwOO8vOcM5WqwSwpkd9Z
+Ngp2CpIniXJU4OM2jbqTWUow88PXcLtLCnD0VG2dTaAczMczGirPjIAztbMe
+Ly/IwAJMdHtiiBSs5NDkhDAJONexclrqPATGB/vlhGIHwRSybpWx1A++P3HU
+yaTqA9/97MZ8XSMGb/zWvzroLwRzUofXYr27wSG8GqsttQB8I6Fs0Wu9Fdxh
+InUFLLPBBjHz5uW8KvBp6zKjIaYQjHvGIk8coZ37b7Pv2XSuXTW4wDMjndLC
+Bmv4CrFDMg88FtTjv7kpAJt/O8/9aeoCE/u2DpTHCsHBxKpGXKoYPGIkL3YK
++8D6L0XWFbp+sIGwPZQ/PQCmVtcXtJoPgbUhDd2TVhJwSsN84JSlFJxuJOlx
+JBnYW79NJ7mOgOeVC/ZMohyMLymaeRGhAM/NDn7KjVSCyRHlK4o0FTiUuhPw
+hDoKlkW5D6RnqMHGwLf+mmINuGPmhKm3ZAycR6FxfenIvsuis733kKW/CAzx
+A+RJrI+FiIdsfsXLRShHpuoOB3fuGwcfu5ZmcLdGXjO0MTv2I5euu44/dUZm
+2+LiBQRkVYwjtS0Oueb91b2HEpFjrzf18JORZwscfvAykDdq7W+33kKW2JOx
+LneQy3lsSQsd2fK53Q63Ell7KqHd6SFyk7Q+lPsYOTVMu+DIQd79L/AfIUVB
+dg==
+            "]]}, Annotation[#, "Charting`Private`Tag#3"]& ], 
+         TagBox[{
+           RGBColor[1, 0, 0], 
+           AbsoluteThickness[2], 
+           Opacity[1.], 
+           Dashing[{Small, Small}], 
+           LineBox[CompressedData["
+1:eJwt1H801Xccx3Gn68x0ohD5Ea2koq6k3BuqN9MSKuVGMflNUbmoOLdFFN2b
+Ssolbkjya7vbve6MpOu+73Wv6/tZrR+kdVGasnCszNqNLGbn7I/Xefz3+vO5
+NIodEDtHR0dn5+z+0+6+Ea+khGDQyfnGM0cJhvCHj/ALCU4upqcZJhDMC1Xs
+uXyFoOlkf7d1HEHtaJJVznmC7P36mZvCCKoNHomSOAQtLp/jcnYRjPPP6/YO
+Jtgq1Y8ZdyRY1znXVmtO8EyyQ0j/OwrXaGiygGIKeR6FKTXJFKY9Z789mNWB
+4RUSXlV4B/qtX/F84pQa+xzy1XHharwiZZRXp7cjNzRE0x3djpabFcGiQypk
+NLWGXA1QoeP8oi7nOCUWjWUmuLCUmP3stbfJrjbE9qFUmy1tuKP7Ut58dwU6
+HTluJ6crsNw2q4DrJkdWZ/qJQ2vlGNvZZ3d7uwz7aJ+HVDNkWKmz42aQpxRV
+vi98vnWWorKQraBvbcGU2NtG0RtbMN6C+1Rq1YzMChq33LgZbT3WH/Iyb8JU
+j97wLUZNGBXY9TZruAE/0JZlhL1uwHOPV1pOqCS4U797wx6FBL/5bWn2vVwx
+qvePOdfniPH9P72tZi5CtGIzJQ/XCbEwDMd229diytwWH7+VtehZlmswpa7E
+6awCxpv2SjzMSn+zarwUr/1933vNn6VYNcGscR3hY6teSXDPMB8HxNnJexN4
+uNldnes460bDdO2AfxIascxtX85q/d2VwMfL2OAd8eLw/VnnDB3MEJicB5+R
+X44mz5q4Ijoy6jofWOtEbnqzdpS3iReFlMGrNMH2BcFlQG2uc/nwoRKeTb/T
+9GgrQff3rwR/TdTAilrO2Y/aGmBIphZm7hZCakme2dqdQvBg8Iqsw8SQ9yxO
+syhYDHJt4JtqoQSsDj/gGtZJoPfVMcOcrgZQbX10OeVBAwzQPzUfedoI7+vN
+GqofNkLM+auJpbrNMHSx0bN46jZ0ehbUPjFoAeXUsYsBc1ogtKDfvXueFJwX
+EjPO9F2I1DJ7rZkyWK3WcFbbycC+91MG00YOQcLt9gEmcuhXDppmMxSQv+SW
+E9grwJZzrOcnnzawoXGT77m2wfO+ppfxvkpI63h1oZWphECfzNG2CBXc1c4I
+5L4q8IqZca2IaYenmgobB792kPktb4yMVoPBtR7dDdvUoHV/6NKR1gG1ho5O
+9KAOqOpZO1HPoUAwGubHZ1GQEMUWOGVQQPt4enR6HwVOI6JN9WcoqE16mxMf
+SoF0kp4lvkBBNU10c0ssBU/M18wVlVGgV5t/aiiVAt19qxYLFRS8XiKUuQko
+iOn6wqNan4AhsBM0Lylw+DpiYLkhAeVHnrHXIAVjAzeyq4wJxB9X/vj9MAWn
+xm3ILSsCP88r7D09TgHfyDqgkk5AT3H2gZ0uAZW/RcyNPQTc7gRtTFpJIPfX
+/Z8tCSLgP/IkUrOawO7w4rrykNk/7oGzXzoR6Etc9EdZNIELyTzRQlcC7y+Z
+ppaeIGA5aV3d7EugxTTQfPFJAv3pVN5SfwKZZfyW6xkEqralJOWyCMz7wWRG
+wCVwYIHMKjSUQOcG1k3LiwQSvQ8MqiIIFEuvegnyCdxx1NbQYwmEbe0ctCgk
+sDeSG1EUT+D/fsH//YJ/Af/UeDs=
+            "]]}, Annotation[#, "Charting`Private`Tag#4"]& ]}, {}}, {
+       "WolframDynamicHighlight", <|
+        "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>}], 
+      StyleBox[
+       DynamicBox[
+        (Charting`HighlightActionBox["DynamicHighlight", {}, 
+         Slot["HighlightElements"], 
+         Slot["LayoutOptions"], 
+         Slot["Meta"], 
+         Charting`HighlightActionFunction["DynamicHighlight", {{{{}, {}, 
+             Annotation[{
+               Directive[
+                Opacity[1.], 
+                AbsoluteThickness[2], 
+                RGBColor[0, 0, 1]], 
+               Line[CompressedData["
+1:eJwt1Ps3lAkYwHFbto2TS00mDMJEqGHmFZLyJNNVmyIqtRYzSZJxqQzJUuMy
+WqoxItdMibODqS2SZR538560KzJbYV3KkrVtFzs4sbY9Z3/4nu9/8DEL4nkd
+X6Smpvb15/67RefytBs3SJRF957fHk+gn/hNmDibxPacrxrWxRKYeazpwJVr
+JPKfO4h1zxGomoygJQtJ9KjMFw3wCGzX6qqKiCUxTDu8hs8hMNgzs3fnERIj
+fw4ruLuHwPJuTbpKn8QuZnyDgwGB618slnvlKlApfTKZUsPCmAHe2xNJHUh1
+o/O6hpnoYW85MBPfjjHjIYt/NGLitXrHotILbTjP/hgrfGSLhluajlSFtKLK
+dF/ULI2BtjrXe4jgFtwcykpPLViHguevd1L2NaNPdqcyY8Ea9/ZmZOq4NKFL
+5N6oK2FWWERPykrd1Iiecv7ihypLPN7db/FwlxxzBnb8cZpjgRK1vSW+bvVY
+ccpd1jZJx5ZsXhODXYdXFeUp1O/M8aRBqrKeVotaQY4Ppj+aIn2rfYi7fg0G
+vyWHwjRWY5BPz9ukN/dxmPWlwYp3NEx5utZwpvUeZs3mi56M6eP5YTPB43QZ
+PqUZ7BnTo+LUXF8D1UGKOyTSjNGlFMz2x3f7rctwnL02Lo2li26F6Vqf2iVY
+sWkFtXqLJp7yvjBm9aEAuc42F087qePtGac7zhNiHMxp9ijeMC8fkQkiD4am
+oRo9Zfffmu/lG7UvqEY8I1Ctb2J4Y5tSbvzDNZ+n5jx43scf9/qp13XR+ImE
+PIoQBAW8XIuk967hlpzAoHwxWHWaZJ9pn3PtKGqWrfIrBOqRpRSTRHVQbCl3
+mJ6WwJuWEjuvi5qg/vv2vI8zd6Asztk+T0cXHO99Wpm4Xwp5tORGGyMKbHVM
+u27sLwOdRw2cUyo9aFT5jJVK74FfiVC6pFUf+l5Fayf33If+Iogc76LBCGO+
+NkxZDQ7+4kWdUhPgCkXhBeq1IBHaRZ57ZQrdblllz7TqIIe74+Saw+ZwLGvQ
+pXdZPWRtr2T+006HQJVTn7GTHC7zJhse+FqAdd98gpNJI2hxKi+JnljCYMuo
+nsCxCRZCbJMnj1sBPTb65YPdzfCXWcJjs1lrGOivGTq5pwUm+m2EUdHrwGd3
+4mRzQCvMSX6bYukywJ274HyT2wYTu8jTOmJbkHusqQ7ktMN4CTczWIMJKpdf
+HDpiOuAMf/h14ksm3H5pN3M3VgFNbMcv9IpZEBrEy2MmKMB3aDklRcIC5kTV
+5rsXFWA+z9s2XcqC+llGkuyyAuzCAu68qGDBM/31mlWFCqB6hsbcrGOB+iEr
+I2mTAqpT6qT2ShZwe0y3lmqQMFbhIozQIsDmaMDIGm0SvF29D43qEvBupFhw
+ewUJGk417n4rCYj/YELeopFAL4qJYdMIEC839pIwSOAb3/AwtCag1dOAW3yA
+BK3Dg9LHbALSfz28ZLUvCaKhW4HbdhGw/9vc8iI/EjI0DBwfeRDQH77qz0IO
+CfUFti5lXgRMZeidKzhLwjeXamsEAQTU6fnoG8WRcLTjftAch4DEQnFdfgIJ
+Mr6IceYEAcsqKQt5qSREZVFMueEEdG/wLjH8ngS7muad/ZEE5NaL3POukvC6
+Njzz4FkC/NndowbZJMTNGk918gn43y8IUSr5n/2CfwFKVVhT
+                "]]}, "Charting`Private`Tag#1"], 
+             Annotation[{
+               Directive[
+                Opacity[1.], 
+                AbsoluteThickness[2], 
+                RGBColor[1, 0, 0]], 
+               Line[CompressedData["
+1:eJwtlH0w1Hkcx4WryUQPwtpsF1IrVpLdjVUf235dDyIJoYY8pXCtchdb7EWb
+jVqiZdZ66BIxFJoeTm7z8Wx/c0ZZDz3glAo15Ypm04Pp3Mz98Zr3v6+Z98zL
+MlzoG6Wro6PjNcd/a9O19FxBAYXfprfzzHIJBstfx8nzKOQdYiaVZRHMOtC8
+JzuHQmpk3lnH8wS1b+NXnM2gcJztJvWUEOwwfFgTL6Jw1db6h2knCB7andW/
+LYjC+KDJ8elggpUaA2stjcKI8YmBt9YE7Z/oNfoq1Ljgi2ot664AE4eFk9Gp
+nTgglywroLai58Y1wzPJHdirtfEOnORjjopTUp7SjoF2xnFPaXykb24Oqjnc
+hv6xaqHGyR0dFuf3Oh1qRfl0sJXRn1tQ8vjlNmPvFpzqK9yU/48b7uqXZS3m
+NeO+iZ3otJ6HJdapl6SuTShTQwQ32wWjNEM2f2xvRPbIwncJ3Vws1dl1JYCv
+wp5+5lQ6i4OtecJmFmnA7kCZS06+Mx4xlw6oVtRj4QvH6b6/ndDafeNhAe0u
+Fqiw1OynDRju3zuZ+voWMuZVXncwX4/pPWvpM2030d8gXGB3zw5PPbeU/JVZ
+i4V+g+LyPCZ+/DZ435RdjcwFXhwfRxvMC8H3PrYV+Czrwu3q+VbIL840/NpR
+ilJpdvZnNgNj96aMM6eKkJ7LtGelmmLZDPeayxs5Xkh/YhDHX4KjtZJjfjHn
+8HpsVVLnjC5uMkrRju6Ox8gHxFU36HUjoyrHv8dKCLM33C/qbZjYojsRLVYa
+Z8DzgmFBYLIeHF0TERZeKAeR2FdB118CnSUttWbBxZBa9+a4mcYU1Jsr2Z8+
+lUJ8/SZWcBoD9Mc8lNMz18D+q2Zs7JklcG5+XX7apxoG0+S+rR424M45l88I
+qYU2GeErjzOhSes/Xl59E4Z6chyCcuxg8EWC0dneWzDQrwj4TesAo6zZ+riB
+OxAVWiWYXboBIjNyjxbp14OFYdT+E11OoOFfqugzbACpuVW6S6wzHLg0wutf
+pIJHP7u2ntLjQJiWO8jgNkJNsZDj2cQF28FZMXdlE9TEWP8iDHOBkdZXJhJO
+Mzyv8l3+cC0PrEUJT2/vaAGLplWxxybcYHjo7rMjO1vBo/3jmSDZFvDfcfpt
+y8E2mJdh+4HYu4Mg8rvL75HtYPsl3lpXnw+NnqvvhEV0wL39lYtHH/NBy3vA
+7kzshKQib8/E5q1Q9nT9TJ1IDVUqWii9SAAx4UKlo1gNRteJx+RlATi+qXGr
+S1NDjOmkZ8tVAag+s1Jrz6vB2eK+Xky1APpo9gY1xWoQvwyIVjUIQH8f06K6
+WQ0iUZdP9BMBRPauci9fSEE474fhflMC6/YfHF1tRMHs4bGRG3QC70cvS8qW
+UeDXZamfvpJA8tRK6uoKCm5/aKnjrCEgX8rwLWVR8E3vWGEBm0DbbvPIy3so
+qEi4qIryI5D5KHD+jwEUaHwCHkMgAZ9QRWVJMAUyxSsT+gECQ0fN3hVHULBg
+e7K2O4LAR5nJiaJfKYiO9vJ2TSDQYOJPszhJzf1rKTJJJHC6WN5QKKZAkfKp
+/f1JAotuGH9XSud8Y1raK9IIaJz3XqFfoGCiqj3pTDoBhSpXoLxIgYo25hWa
+SSCEaF6Z51Gge2udBy+LwP/9gu4kZchcv+BfFOtYkg==
+                "]]}, "Charting`Private`Tag#2"], 
+             Annotation[{
+               Directive[
+                Opacity[1.], 
+                RGBColor[0.455, 0.7, 0.21], 
+                AbsoluteThickness[2], 
+                Dashing[{Small, Small}]], 
+               Line[CompressedData["
+1:eJxF1I0vFHAcBvCbrC3zMknOyykdormy5C7JYjR5KW+dIhPnvGZOszLFzbWT
+l6KOO+O4k8vbunXHRHa7jntxx2ord6gcU1cSk5nsXJOpNn1/z/bs2ecfeNwo
+tPhMMwwGc/Fv/63HG9uq5ubxYcxuktlL+WwOcl2KPO4RC9m4UuhcUY2stnon
+KixBzoqpmwpPQu7RWuCNWGSfj3tk8U1j4OI52mo2QwOO8vOcM5WqwSwpkd9Z
+Ngp2CpIniXJU4OM2jbqTWUow88PXcLtLCnD0VG2dTaAczMczGirPjIAztbMe
+Ly/IwAJMdHtiiBSs5NDkhDAJONexclrqPATGB/vlhGIHwRSybpWx1A++P3HU
+yaTqA9/97MZ8XSMGb/zWvzroLwRzUofXYr27wSG8GqsttQB8I6Fs0Wu9Fdxh
+InUFLLPBBjHz5uW8KvBp6zKjIaYQjHvGIk8coZ37b7Pv2XSuXTW4wDMjndLC
+Bmv4CrFDMg88FtTjv7kpAJt/O8/9aeoCE/u2DpTHCsHBxKpGXKoYPGIkL3YK
++8D6L0XWFbp+sIGwPZQ/PQCmVtcXtJoPgbUhDd2TVhJwSsN84JSlFJxuJOlx
+JBnYW79NJ7mOgOeVC/ZMohyMLymaeRGhAM/NDn7KjVSCyRHlK4o0FTiUuhPw
+hDoKlkW5D6RnqMHGwLf+mmINuGPmhKm3ZAycR6FxfenIvsuis733kKW/CAzx
+A+RJrI+FiIdsfsXLRShHpuoOB3fuGwcfu5ZmcLdGXjO0MTv2I5euu44/dUZm
+2+LiBQRkVYwjtS0Oueb91b2HEpFjrzf18JORZwscfvAykDdq7W+33kKW2JOx
+LneQy3lsSQsd2fK53Q63Ell7KqHd6SFyk7Q+lPsYOTVMu+DIQd79L/AfIUVB
+dg==
+                "]]}, "Charting`Private`Tag#3"], 
+             Annotation[{
+               Directive[
+                Opacity[1.], 
+                AbsoluteThickness[2], 
+                RGBColor[1, 0, 0], 
+                Dashing[{Small, Small}]], 
+               Line[CompressedData["
+1:eJwt1H801Xccx3Gn68x0ohD5Ea2koq6k3BuqN9MSKuVGMflNUbmoOLdFFN2b
+Ssolbkjya7vbve6MpOu+73Wv6/tZrR+kdVGasnCszNqNLGbn7I/Xefz3+vO5
+NIodEDtHR0dn5+z+0+6+Ea+khGDQyfnGM0cJhvCHj/ALCU4upqcZJhDMC1Xs
+uXyFoOlkf7d1HEHtaJJVznmC7P36mZvCCKoNHomSOAQtLp/jcnYRjPPP6/YO
+Jtgq1Y8ZdyRY1znXVmtO8EyyQ0j/OwrXaGiygGIKeR6FKTXJFKY9Z789mNWB
+4RUSXlV4B/qtX/F84pQa+xzy1XHharwiZZRXp7cjNzRE0x3djpabFcGiQypk
+NLWGXA1QoeP8oi7nOCUWjWUmuLCUmP3stbfJrjbE9qFUmy1tuKP7Ut58dwU6
+HTluJ6crsNw2q4DrJkdWZ/qJQ2vlGNvZZ3d7uwz7aJ+HVDNkWKmz42aQpxRV
+vi98vnWWorKQraBvbcGU2NtG0RtbMN6C+1Rq1YzMChq33LgZbT3WH/Iyb8JU
+j97wLUZNGBXY9TZruAE/0JZlhL1uwHOPV1pOqCS4U797wx6FBL/5bWn2vVwx
+qvePOdfniPH9P72tZi5CtGIzJQ/XCbEwDMd229diytwWH7+VtehZlmswpa7E
+6awCxpv2SjzMSn+zarwUr/1933vNn6VYNcGscR3hY6teSXDPMB8HxNnJexN4
+uNldnes460bDdO2AfxIascxtX85q/d2VwMfL2OAd8eLw/VnnDB3MEJicB5+R
+X44mz5q4Ijoy6jofWOtEbnqzdpS3iReFlMGrNMH2BcFlQG2uc/nwoRKeTb/T
+9GgrQff3rwR/TdTAilrO2Y/aGmBIphZm7hZCakme2dqdQvBg8Iqsw8SQ9yxO
+syhYDHJt4JtqoQSsDj/gGtZJoPfVMcOcrgZQbX10OeVBAwzQPzUfedoI7+vN
+GqofNkLM+auJpbrNMHSx0bN46jZ0ehbUPjFoAeXUsYsBc1ogtKDfvXueFJwX
+EjPO9F2I1DJ7rZkyWK3WcFbbycC+91MG00YOQcLt9gEmcuhXDppmMxSQv+SW
+E9grwJZzrOcnnzawoXGT77m2wfO+ppfxvkpI63h1oZWphECfzNG2CBXc1c4I
+5L4q8IqZca2IaYenmgobB792kPktb4yMVoPBtR7dDdvUoHV/6NKR1gG1ho5O
+9KAOqOpZO1HPoUAwGubHZ1GQEMUWOGVQQPt4enR6HwVOI6JN9WcoqE16mxMf
+SoF0kp4lvkBBNU10c0ssBU/M18wVlVGgV5t/aiiVAt19qxYLFRS8XiKUuQko
+iOn6wqNan4AhsBM0Lylw+DpiYLkhAeVHnrHXIAVjAzeyq4wJxB9X/vj9MAWn
+xm3ILSsCP88r7D09TgHfyDqgkk5AT3H2gZ0uAZW/RcyNPQTc7gRtTFpJIPfX
+/Z8tCSLgP/IkUrOawO7w4rrykNk/7oGzXzoR6Etc9EdZNIELyTzRQlcC7y+Z
+ppaeIGA5aV3d7EugxTTQfPFJAv3pVN5SfwKZZfyW6xkEqralJOWyCMz7wWRG
+wCVwYIHMKjSUQOcG1k3LiwQSvQ8MqiIIFEuvegnyCdxx1NbQYwmEbe0ctCgk
+sDeSG1EUT+D/fsH//YJ/Af/UeDs=
+                "]]}, "Charting`Private`Tag#4"]}}, {}}, <|
+          "HighlightElements" -> <|
+            "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+           "LayoutOptions" -> <|
+            "PanelPlotLayout" -> <||>, "PlotRange" -> {All, All}, 
+             "Frame" -> {{False, False}, {False, False}}, 
+             "AxesOrigin" -> {0, 0}, "ImageSize" -> {360, 360/GoldenRatio}, 
+             "Axes" -> {True, True}, "LabelStyle" -> {}, "AspectRatio" -> 
+             GoldenRatio^(-1), "DefaultStyle" -> {
+               Directive[
+                Opacity[1.], 
+                AbsoluteThickness[2], 
+                RGBColor[1, 0, 0], 
+                Dashing[{Small, Small}]], 
+               Directive[
+                Opacity[1.], 
+                RGBColor[0.455, 0.7, 0.21], 
+                AbsoluteThickness[2], 
+                Dashing[{Small, Small}]], 
+               Directive[
+                Opacity[1.], 
+                AbsoluteThickness[2], 
+                RGBColor[1, 0, 0]], 
+               Directive[
+                Opacity[1.], 
+                AbsoluteThickness[2], 
+                RGBColor[0, 0, 1]]}, 
+             "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+                 (Identity[#]& )[
+                  Part[#, 1]], 
+                 (Identity[#]& )[
+                  Part[#, 2]]}& ), 
+               "ScalingFunctions" -> {{Identity, Identity}, {
+                 Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> 
+             False|>, 
+           "Meta" -> <|
+            "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, 
+             "Function" -> Plot, "GroupHighlight" -> False|>|>]]& )[<|
+         "HighlightElements" -> <|
+           "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+          "LayoutOptions" -> <|
+           "PanelPlotLayout" -> <||>, "PlotRange" -> {All, All}, 
+            "Frame" -> {{False, False}, {False, False}}, 
+            "AxesOrigin" -> {0, 0}, "ImageSize" -> {360, 360/GoldenRatio}, 
+            "Axes" -> {True, True}, "LabelStyle" -> {}, "AspectRatio" -> 
+            GoldenRatio^(-1), "DefaultStyle" -> {
+              Directive[
+               Opacity[1.], 
+               AbsoluteThickness[2], 
+               RGBColor[1, 0, 0], 
+               Dashing[{Small, Small}]], 
+              Directive[
+               Opacity[1.], 
+               RGBColor[0.455, 0.7, 0.21], 
+               AbsoluteThickness[2], 
+               Dashing[{Small, Small}]], 
+              Directive[
+               Opacity[1.], 
+               AbsoluteThickness[2], 
+               RGBColor[1, 0, 0]], 
+              Directive[
+               Opacity[1.], 
+               AbsoluteThickness[2], 
+               RGBColor[0, 0, 1]]}, 
+            "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+                (Identity[#]& )[
+                 Part[#, 1]], 
+                (Identity[#]& )[
+                 Part[#, 2]]}& ), 
+              "ScalingFunctions" -> {{Identity, Identity}, {
+                Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> 
+            False|>, 
+          "Meta" -> <|
+           "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+            Plot, "GroupHighlight" -> False|>|>], 
+        ImageSizeCache -> {{4.503599627370496*^15, -4.503599627370496*^15}, {
+         4.503599627370496*^15, -4.503599627370496*^15}}], Selectable -> 
+       False]}, 
+     Annotation[{{{{}, {}, 
+         Annotation[{
+           Directive[
+            Opacity[1.], 
+            AbsoluteThickness[2], 
+            RGBColor[0, 0, 1]], 
+           Line[CompressedData["
+1:eJwt1Ps3lAkYwHFbto2TS00mDMJEqGHmFZLyJNNVmyIqtRYzSZJxqQzJUuMy
+WqoxItdMibODqS2SZR538560KzJbYV3KkrVtFzs4sbY9Z3/4nu9/8DEL4nkd
+X6Smpvb15/67RefytBs3SJRF957fHk+gn/hNmDibxPacrxrWxRKYeazpwJVr
+JPKfO4h1zxGomoygJQtJ9KjMFw3wCGzX6qqKiCUxTDu8hs8hMNgzs3fnERIj
+fw4ruLuHwPJuTbpKn8QuZnyDgwGB618slnvlKlApfTKZUsPCmAHe2xNJHUh1
+o/O6hpnoYW85MBPfjjHjIYt/NGLitXrHotILbTjP/hgrfGSLhluajlSFtKLK
+dF/ULI2BtjrXe4jgFtwcykpPLViHguevd1L2NaNPdqcyY8Ea9/ZmZOq4NKFL
+5N6oK2FWWERPykrd1Iiecv7ihypLPN7db/FwlxxzBnb8cZpjgRK1vSW+bvVY
+ccpd1jZJx5ZsXhODXYdXFeUp1O/M8aRBqrKeVotaQY4Ppj+aIn2rfYi7fg0G
+vyWHwjRWY5BPz9ukN/dxmPWlwYp3NEx5utZwpvUeZs3mi56M6eP5YTPB43QZ
+PqUZ7BnTo+LUXF8D1UGKOyTSjNGlFMz2x3f7rctwnL02Lo2li26F6Vqf2iVY
+sWkFtXqLJp7yvjBm9aEAuc42F087qePtGac7zhNiHMxp9ijeMC8fkQkiD4am
+oRo9Zfffmu/lG7UvqEY8I1Ctb2J4Y5tSbvzDNZ+n5jx43scf9/qp13XR+ImE
+PIoQBAW8XIuk967hlpzAoHwxWHWaZJ9pn3PtKGqWrfIrBOqRpRSTRHVQbCl3
+mJ6WwJuWEjuvi5qg/vv2vI8zd6Asztk+T0cXHO99Wpm4Xwp5tORGGyMKbHVM
+u27sLwOdRw2cUyo9aFT5jJVK74FfiVC6pFUf+l5Fayf33If+Iogc76LBCGO+
+NkxZDQ7+4kWdUhPgCkXhBeq1IBHaRZ57ZQrdblllz7TqIIe74+Saw+ZwLGvQ
+pXdZPWRtr2T+006HQJVTn7GTHC7zJhse+FqAdd98gpNJI2hxKi+JnljCYMuo
+nsCxCRZCbJMnj1sBPTb65YPdzfCXWcJjs1lrGOivGTq5pwUm+m2EUdHrwGd3
+4mRzQCvMSX6bYukywJ274HyT2wYTu8jTOmJbkHusqQ7ktMN4CTczWIMJKpdf
+HDpiOuAMf/h14ksm3H5pN3M3VgFNbMcv9IpZEBrEy2MmKMB3aDklRcIC5kTV
+5rsXFWA+z9s2XcqC+llGkuyyAuzCAu68qGDBM/31mlWFCqB6hsbcrGOB+iEr
+I2mTAqpT6qT2ShZwe0y3lmqQMFbhIozQIsDmaMDIGm0SvF29D43qEvBupFhw
+ewUJGk417n4rCYj/YELeopFAL4qJYdMIEC839pIwSOAb3/AwtCag1dOAW3yA
+BK3Dg9LHbALSfz28ZLUvCaKhW4HbdhGw/9vc8iI/EjI0DBwfeRDQH77qz0IO
+CfUFti5lXgRMZeidKzhLwjeXamsEAQTU6fnoG8WRcLTjftAch4DEQnFdfgIJ
+Mr6IceYEAcsqKQt5qSREZVFMueEEdG/wLjH8ngS7muad/ZEE5NaL3POukvC6
+Njzz4FkC/NndowbZJMTNGk918gn43y8IUSr5n/2CfwFKVVhT
+            "]]}, "Charting`Private`Tag#1"], 
+         Annotation[{
+           Directive[
+            Opacity[1.], 
+            AbsoluteThickness[2], 
+            RGBColor[1, 0, 0]], 
+           Line[CompressedData["
+1:eJwtlH0w1Hkcx4WryUQPwtpsF1IrVpLdjVUf235dDyIJoYY8pXCtchdb7EWb
+jVqiZdZ66BIxFJoeTm7z8Wx/c0ZZDz3glAo15Ypm04Pp3Mz98Zr3v6+Z98zL
+MlzoG6Wro6PjNcd/a9O19FxBAYXfprfzzHIJBstfx8nzKOQdYiaVZRHMOtC8
+JzuHQmpk3lnH8wS1b+NXnM2gcJztJvWUEOwwfFgTL6Jw1db6h2knCB7andW/
+LYjC+KDJ8elggpUaA2stjcKI8YmBt9YE7Z/oNfoq1Ljgi2ot664AE4eFk9Gp
+nTgglywroLai58Y1wzPJHdirtfEOnORjjopTUp7SjoF2xnFPaXykb24Oqjnc
+hv6xaqHGyR0dFuf3Oh1qRfl0sJXRn1tQ8vjlNmPvFpzqK9yU/48b7uqXZS3m
+NeO+iZ3otJ6HJdapl6SuTShTQwQ32wWjNEM2f2xvRPbIwncJ3Vws1dl1JYCv
+wp5+5lQ6i4OtecJmFmnA7kCZS06+Mx4xlw6oVtRj4QvH6b6/ndDafeNhAe0u
+Fqiw1OynDRju3zuZ+voWMuZVXncwX4/pPWvpM2030d8gXGB3zw5PPbeU/JVZ
+i4V+g+LyPCZ+/DZ435RdjcwFXhwfRxvMC8H3PrYV+Czrwu3q+VbIL840/NpR
+ilJpdvZnNgNj96aMM6eKkJ7LtGelmmLZDPeayxs5Xkh/YhDHX4KjtZJjfjHn
+8HpsVVLnjC5uMkrRju6Ox8gHxFU36HUjoyrHv8dKCLM33C/qbZjYojsRLVYa
+Z8DzgmFBYLIeHF0TERZeKAeR2FdB118CnSUttWbBxZBa9+a4mcYU1Jsr2Z8+
+lUJ8/SZWcBoD9Mc8lNMz18D+q2Zs7JklcG5+XX7apxoG0+S+rR424M45l88I
+qYU2GeErjzOhSes/Xl59E4Z6chyCcuxg8EWC0dneWzDQrwj4TesAo6zZ+riB
+OxAVWiWYXboBIjNyjxbp14OFYdT+E11OoOFfqugzbACpuVW6S6wzHLg0wutf
+pIJHP7u2ntLjQJiWO8jgNkJNsZDj2cQF28FZMXdlE9TEWP8iDHOBkdZXJhJO
+Mzyv8l3+cC0PrEUJT2/vaAGLplWxxybcYHjo7rMjO1vBo/3jmSDZFvDfcfpt
+y8E2mJdh+4HYu4Mg8rvL75HtYPsl3lpXnw+NnqvvhEV0wL39lYtHH/NBy3vA
+7kzshKQib8/E5q1Q9nT9TJ1IDVUqWii9SAAx4UKlo1gNRteJx+RlATi+qXGr
+S1NDjOmkZ8tVAag+s1Jrz6vB2eK+Xky1APpo9gY1xWoQvwyIVjUIQH8f06K6
+WQ0iUZdP9BMBRPauci9fSEE474fhflMC6/YfHF1tRMHs4bGRG3QC70cvS8qW
+UeDXZamfvpJA8tRK6uoKCm5/aKnjrCEgX8rwLWVR8E3vWGEBm0DbbvPIy3so
+qEi4qIryI5D5KHD+jwEUaHwCHkMgAZ9QRWVJMAUyxSsT+gECQ0fN3hVHULBg
+e7K2O4LAR5nJiaJfKYiO9vJ2TSDQYOJPszhJzf1rKTJJJHC6WN5QKKZAkfKp
+/f1JAotuGH9XSud8Y1raK9IIaJz3XqFfoGCiqj3pTDoBhSpXoLxIgYo25hWa
+SSCEaF6Z51Gge2udBy+LwP/9gu4kZchcv+BfFOtYkg==
+            "]]}, "Charting`Private`Tag#2"], 
+         Annotation[{
+           Directive[
+            Opacity[1.], 
+            RGBColor[0.455, 0.7, 0.21], 
+            AbsoluteThickness[2], 
+            Dashing[{Small, Small}]], 
+           Line[CompressedData["
+1:eJxF1I0vFHAcBvCbrC3zMknOyykdormy5C7JYjR5KW+dIhPnvGZOszLFzbWT
+l6KOO+O4k8vbunXHRHa7jntxx2ord6gcU1cSk5nsXJOpNn1/z/bs2ecfeNwo
+tPhMMwwGc/Fv/63HG9uq5ubxYcxuktlL+WwOcl2KPO4RC9m4UuhcUY2stnon
+KixBzoqpmwpPQu7RWuCNWGSfj3tk8U1j4OI52mo2QwOO8vOcM5WqwSwpkd9Z
+Ngp2CpIniXJU4OM2jbqTWUow88PXcLtLCnD0VG2dTaAczMczGirPjIAztbMe
+Ly/IwAJMdHtiiBSs5NDkhDAJONexclrqPATGB/vlhGIHwRSybpWx1A++P3HU
+yaTqA9/97MZ8XSMGb/zWvzroLwRzUofXYr27wSG8GqsttQB8I6Fs0Wu9Fdxh
+InUFLLPBBjHz5uW8KvBp6zKjIaYQjHvGIk8coZ37b7Pv2XSuXTW4wDMjndLC
+Bmv4CrFDMg88FtTjv7kpAJt/O8/9aeoCE/u2DpTHCsHBxKpGXKoYPGIkL3YK
++8D6L0XWFbp+sIGwPZQ/PQCmVtcXtJoPgbUhDd2TVhJwSsN84JSlFJxuJOlx
+JBnYW79NJ7mOgOeVC/ZMohyMLymaeRGhAM/NDn7KjVSCyRHlK4o0FTiUuhPw
+hDoKlkW5D6RnqMHGwLf+mmINuGPmhKm3ZAycR6FxfenIvsuis733kKW/CAzx
+A+RJrI+FiIdsfsXLRShHpuoOB3fuGwcfu5ZmcLdGXjO0MTv2I5euu44/dUZm
+2+LiBQRkVYwjtS0Oueb91b2HEpFjrzf18JORZwscfvAykDdq7W+33kKW2JOx
+LneQy3lsSQsd2fK53Q63Ell7KqHd6SFyk7Q+lPsYOTVMu+DIQd79L/AfIUVB
+dg==
+            "]]}, "Charting`Private`Tag#3"], 
+         Annotation[{
+           Directive[
+            Opacity[1.], 
+            AbsoluteThickness[2], 
+            RGBColor[1, 0, 0], 
+            Dashing[{Small, Small}]], 
+           Line[CompressedData["
+1:eJwt1H801Xccx3Gn68x0ohD5Ea2koq6k3BuqN9MSKuVGMflNUbmoOLdFFN2b
+Ssolbkjya7vbve6MpOu+73Wv6/tZrR+kdVGasnCszNqNLGbn7I/Xefz3+vO5
+NIodEDtHR0dn5+z+0+6+Ea+khGDQyfnGM0cJhvCHj/ALCU4upqcZJhDMC1Xs
+uXyFoOlkf7d1HEHtaJJVznmC7P36mZvCCKoNHomSOAQtLp/jcnYRjPPP6/YO
+Jtgq1Y8ZdyRY1znXVmtO8EyyQ0j/OwrXaGiygGIKeR6FKTXJFKY9Z789mNWB
+4RUSXlV4B/qtX/F84pQa+xzy1XHharwiZZRXp7cjNzRE0x3djpabFcGiQypk
+NLWGXA1QoeP8oi7nOCUWjWUmuLCUmP3stbfJrjbE9qFUmy1tuKP7Ut58dwU6
+HTluJ6crsNw2q4DrJkdWZ/qJQ2vlGNvZZ3d7uwz7aJ+HVDNkWKmz42aQpxRV
+vi98vnWWorKQraBvbcGU2NtG0RtbMN6C+1Rq1YzMChq33LgZbT3WH/Iyb8JU
+j97wLUZNGBXY9TZruAE/0JZlhL1uwHOPV1pOqCS4U797wx6FBL/5bWn2vVwx
+qvePOdfniPH9P72tZi5CtGIzJQ/XCbEwDMd229diytwWH7+VtehZlmswpa7E
+6awCxpv2SjzMSn+zarwUr/1933vNn6VYNcGscR3hY6teSXDPMB8HxNnJexN4
+uNldnes460bDdO2AfxIascxtX85q/d2VwMfL2OAd8eLw/VnnDB3MEJicB5+R
+X44mz5q4Ijoy6jofWOtEbnqzdpS3iReFlMGrNMH2BcFlQG2uc/nwoRKeTb/T
+9GgrQff3rwR/TdTAilrO2Y/aGmBIphZm7hZCakme2dqdQvBg8Iqsw8SQ9yxO
+syhYDHJt4JtqoQSsDj/gGtZJoPfVMcOcrgZQbX10OeVBAwzQPzUfedoI7+vN
+GqofNkLM+auJpbrNMHSx0bN46jZ0ehbUPjFoAeXUsYsBc1ogtKDfvXueFJwX
+EjPO9F2I1DJ7rZkyWK3WcFbbycC+91MG00YOQcLt9gEmcuhXDppmMxSQv+SW
+E9grwJZzrOcnnzawoXGT77m2wfO+ppfxvkpI63h1oZWphECfzNG2CBXc1c4I
+5L4q8IqZca2IaYenmgobB792kPktb4yMVoPBtR7dDdvUoHV/6NKR1gG1ho5O
+9KAOqOpZO1HPoUAwGubHZ1GQEMUWOGVQQPt4enR6HwVOI6JN9WcoqE16mxMf
+SoF0kp4lvkBBNU10c0ssBU/M18wVlVGgV5t/aiiVAt19qxYLFRS8XiKUuQko
+iOn6wqNan4AhsBM0Lylw+DpiYLkhAeVHnrHXIAVjAzeyq4wJxB9X/vj9MAWn
+xm3ILSsCP88r7D09TgHfyDqgkk5AT3H2gZ0uAZW/RcyNPQTc7gRtTFpJIPfX
+/Z8tCSLgP/IkUrOawO7w4rrykNk/7oGzXzoR6Etc9EdZNIELyTzRQlcC7y+Z
+ppaeIGA5aV3d7EugxTTQfPFJAv3pVN5SfwKZZfyW6xkEqralJOWyCMz7wWRG
+wCVwYIHMKjSUQOcG1k3LiwQSvQ8MqiIIFEuvegnyCdxx1NbQYwmEbe0ctCgk
+sDeSG1EUT+D/fsH//YJ/Af/UeDs=
+            "]]}, "Charting`Private`Tag#4"]}}, {}}, <|
+      "HighlightElements" -> <|
+        "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+       "LayoutOptions" -> <|
+        "PanelPlotLayout" -> <||>, "PlotRange" -> {All, All}, 
+         "Frame" -> {{False, False}, {False, False}}, "AxesOrigin" -> {0, 0}, 
+         "ImageSize" -> {360, 360/GoldenRatio}, "Axes" -> {True, True}, 
+         "LabelStyle" -> {}, "AspectRatio" -> GoldenRatio^(-1), 
+         "DefaultStyle" -> {
+           Directive[
+            Opacity[1.], 
+            AbsoluteThickness[2], 
+            RGBColor[1, 0, 0], 
+            Dashing[{Small, Small}]], 
+           Directive[
+            Opacity[1.], 
+            RGBColor[0.455, 0.7, 0.21], 
+            AbsoluteThickness[2], 
+            Dashing[{Small, Small}]], 
+           Directive[
+            Opacity[1.], 
+            AbsoluteThickness[2], 
+            RGBColor[1, 0, 0]], 
+           Directive[
+            Opacity[1.], 
+            AbsoluteThickness[2], 
+            RGBColor[0, 0, 1]]}, 
+         "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+             (Identity[#]& )[
+              Part[#, 1]], 
+             (Identity[#]& )[
+              Part[#, 2]]}& ), 
+           "ScalingFunctions" -> {{Identity, Identity}, {
+             Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> False|>, 
+       "Meta" -> <|
+        "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+         Plot, "GroupHighlight" -> False|>|>, "DynamicHighlight"]], 
+    AspectRatio -> NCache[GoldenRatio^(-1), 0.6180339887498948], 
+    Axes -> {True, True}, AxesLabel -> {
+      FormBox[
+       TagBox[
+       "\"\\!\\(\\*SubscriptBox[\\(\[CapitalPhi]\\), \\(d\\)]\\)\"", 
+        HoldForm], TraditionalForm], 
+      FormBox[
+       TagBox[
+       "\"\\!\\(\\*FractionBox[\\(E_as\\), \\(E_in\\)]\\)\"", HoldForm], 
+       TraditionalForm]}, AxesOrigin -> {0, 0}, DisplayFunction -> Identity, 
+    Frame -> {{False, False}, {False, False}}, 
+    FrameLabel -> {{None, None}, {None, None}}, 
+    FrameTicks -> {{Automatic, Automatic}, {Automatic, Automatic}}, 
+    GridLines -> {Automatic, Automatic}, GridLinesStyle -> Directive[
+      GrayLevel[0.5, 0.4]], ImagePadding -> All, 
+    Method -> {
+     "DefaultBoundaryStyle" -> Automatic, 
+      "DefaultGraphicsInteraction" -> {
+       "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+        "Effects" -> {
+         "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+          "Droplines" -> {
+           "freeformCursorMode" -> True, 
+            "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+      "DefaultMeshStyle" -> AbsolutePointSize[6], "ScalingFunctions" -> None, 
+      "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+          (Identity[#]& )[
+           Part[#, 1]], 
+          (Identity[#]& )[
+           Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+          (Identity[#]& )[
+           Part[#, 1]], 
+          (Identity[#]& )[
+           Part[#, 2]]}& )}}, PlotLabel -> 
+    FormBox["\"FPMI vs Michelson AS port transfer function\"", 
+      TraditionalForm], PlotRange -> {All, All}, PlotRangeClipping -> True, 
+    PlotRangePadding -> {{
+       Scaled[0.02], 
+       Scaled[0.02]}, {
+       Scaled[0.05], 
+       Scaled[0.05]}}, Ticks -> {Automatic, Automatic}], 
+   FormBox[
+    FormBox[
+     TemplateBox[{
+      "\"Re[FPMI]\"", "\"Im[FPMI]\"", "\"Re[Michelson]\"", 
+       "\"Im[Michelson]\""}, "LineLegend", DisplayFunction -> (FormBox[
+        StyleBox[
+         StyleBox[
+          PaneBox[
+           TagBox[
+            GridBox[{{
+               TagBox[
+                GridBox[{{
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    Opacity[1.], 
+                    AbsoluteThickness[2], 
+                    RGBColor[0, 0, 1]], {
+                    LineBox[{{0, 12.5}, {40, 12.5}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    Opacity[1.], 
+                    AbsoluteThickness[2], 
+                    RGBColor[0, 0, 1]], {}}}, AspectRatio -> Full, 
+                    ImageSize -> {40, 12.5}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.18000000000000002`] -> 
+                    Baseline)], #}, {
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    Opacity[1.], 
+                    AbsoluteThickness[2], 
+                    RGBColor[1, 0, 0]], {
+                    LineBox[{{0, 12.5}, {40, 12.5}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    Opacity[1.], 
+                    AbsoluteThickness[2], 
+                    RGBColor[1, 0, 0]], {}}}, AspectRatio -> Full, 
+                    ImageSize -> {40, 12.5}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.18000000000000002`] -> 
+                    Baseline)], #2}, {
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    Opacity[1.], 
+                    RGBColor[0.455, 0.7, 0.21], 
+                    AbsoluteThickness[2], 
+                    Dashing[{Small, Small}]], {
+                    LineBox[{{0, 12.5}, {40, 12.5}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    Opacity[1.], 
+                    RGBColor[0.455, 0.7, 0.21], 
+                    AbsoluteThickness[2], 
+                    Dashing[{Small, Small}]], {}}}, AspectRatio -> Full, 
+                    ImageSize -> {40, 12.5}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.18000000000000002`] -> 
+                    Baseline)], #3}, {
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    Opacity[1.], 
+                    AbsoluteThickness[2], 
+                    RGBColor[1, 0, 0], 
+                    Dashing[{Small, Small}]], {
+                    LineBox[{{0, 12.5}, {40, 12.5}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    Opacity[1.], 
+                    AbsoluteThickness[2], 
+                    RGBColor[1, 0, 0], 
+                    Dashing[{Small, Small}]], {}}}, AspectRatio -> Full, 
+                    ImageSize -> {40, 12.5}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.18000000000000002`] -> 
+                    Baseline)], #4}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
+                 AutoDelete -> False, 
+                 GridBoxDividers -> {
+                  "Columns" -> {{False}}, "Rows" -> {{False}}}, 
+                 GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}},
+                  GridBoxSpacings -> {
+                  "Columns" -> {{0.5}}, "Rows" -> {{0.8}}}], "Grid"]}}, 
+             GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+             AutoDelete -> False, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{1}}, "Rows" -> {{0}}}], 
+            "Grid"], Alignment -> Left, AppearanceElements -> None, 
+           ImageMargins -> {{5, 5}, {5, 5}}, ImageSizeAction -> 
+           "ResizeToFit"], LineIndent -> 0, StripOnInput -> False], {
+         FontFamily -> "Arial"}, Background -> Automatic, StripOnInput -> 
+         False], TraditionalForm]& ), 
+      InterpretationFunction :> (RowBox[{"LineLegend", "[", 
+         RowBox[{
+           RowBox[{"{", 
+             RowBox[{
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"Opacity", "[", "1.`", "]"}], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", 
+                   
+                   TemplateBox[<|"color" -> RGBColor[0, 0, 1]|>, 
+                    "RGBColorSwatchTemplate"]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"Opacity", "[", "1.`", "]"}], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", 
+                   
+                   TemplateBox[<|"color" -> RGBColor[1, 0, 0]|>, 
+                    "RGBColorSwatchTemplate"]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"Opacity", "[", "1.`", "]"}], ",", 
+                   
+                   TemplateBox[<|"color" -> RGBColor[0.455, 0.7, 0.21]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", 
+                   RowBox[{"Dashing", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Small", ",", "Small"}], "}"}], "]"}]}], "]"}], 
+               ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"Opacity", "[", "1.`", "]"}], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", 
+                   
+                   TemplateBox[<|"color" -> RGBColor[1, 0, 0]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                   RowBox[{"Dashing", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Small", ",", "Small"}], "}"}], "]"}]}], "]"}]}], 
+             "}"}], ",", 
+           RowBox[{"{", 
+             RowBox[{#, ",", #2, ",", #3, ",", #4}], "}"}], ",", 
+           RowBox[{"LegendMarkers", "\[Rule]", "None"}], ",", 
+           RowBox[{"LabelStyle", "\[Rule]", 
+             RowBox[{"{", "}"}]}], ",", 
+           RowBox[{"LegendLayout", "\[Rule]", "\"Column\""}]}], "]"}]& ), 
+      Editable -> True], TraditionalForm], TraditionalForm]},
+  "Legended",
+  DisplayFunction->(GridBox[{{
+      TagBox[
+       ItemBox[
+        PaneBox[
+         TagBox[#, "SkipImageSizeLevel"], Alignment -> {Center, Baseline}, 
+         BaselinePosition -> Baseline], DefaultBaseStyle -> "Labeled"], 
+       "SkipImageSizeLevel"], 
+      ItemBox[#2, DefaultBaseStyle -> "LabeledLabel"]}}, 
+    GridBoxAlignment -> {"Columns" -> {{Center}}, "Rows" -> {{Center}}}, 
+    AutoDelete -> False, GridBoxItemSize -> Automatic, 
+    BaselinePosition -> {1, 1}]& ),
+  Editable->True,
+  InterpretationFunction->(RowBox[{"Legended", "[", 
+     RowBox[{#, ",", 
+       RowBox[{"Placed", "[", 
+         RowBox[{#2, ",", "After"}], "]"}]}], "]"}]& )]], "Output",
+ CellChangeTimes->{3.984680870667881*^9},
+ CellLabel->
+  "Out[189]=",ExpressionUUID->"706bbf91-335a-4569-8f2b-f3d96b031620"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{Automatic, 0}, {0, Automatic}},
+CellContext->Notebook,
+FrontEndVersion->"14.2 for Mac OS X ARM (64-bit) (March 16, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"841e6c2e-a84a-47a4-aa4a-2a6b3a1b2f2a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 219, 4, 70, "Section",ExpressionUUID->"230f8de7-0c25-4af6-a3e4-8103ab1402f5"],
+Cell[CellGroupData[{
+Cell[820, 30, 174, 3, 53, "Subsection",ExpressionUUID->"d3b4f70d-b6bf-4940-bc9a-2f3b0f6224bf"],
+Cell[CellGroupData[{
+Cell[1019, 37, 164, 3, 43, "Subsubsection",ExpressionUUID->"781a9d53-2d13-457e-a151-54791dedc18e"],
+Cell[CellGroupData[{
+Cell[1208, 44, 5812, 138, 662, "Input",ExpressionUUID->"fcb5a063-27da-495d-9d6c-d0a12e13577b"],
+Cell[7023, 184, 3026, 88, 233, "Output",ExpressionUUID->"93f4064f-35a2-40fc-a4ab-0fca25397f60"],
+Cell[10052, 274, 6447, 128, 317, "Output",ExpressionUUID->"9092d4ed-add1-437c-8bbb-90e93fc8a3fb"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16548, 408, 164, 3, 43, "Subsubsection",ExpressionUUID->"234aff8b-8f9c-470f-97d5-269b363662cd"],
+Cell[CellGroupData[{
+Cell[16737, 415, 6176, 140, 539, "Input",ExpressionUUID->"702f0c78-77cb-4ffc-9134-266470d9ddc2"],
+Cell[22916, 557, 4553, 134, 247, "Output",ExpressionUUID->"55467ff5-5b1a-47d7-b3ed-bef6826eee68"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27530, 698, 190, 3, 53, "Subsection",ExpressionUUID->"b963dd80-e08a-40b2-8f4d-ff549b2b62ce"],
+Cell[CellGroupData[{
+Cell[27745, 705, 2603, 70, 315, "Input",ExpressionUUID->"97c295fd-90e8-47d9-8526-fcc9f977c5ca"],
+Cell[30351, 777, 76140, 1717, 371, "Output",ExpressionUUID->"28b3e2c7-f44b-4464-b25f-fe8dae12eadf"],
+Cell[106494, 2496, 4772, 107, 121, "Output",ExpressionUUID->"40122f8e-17d0-45e4-93f6-62a791b9a9f1"],
+Cell[111269, 2605, 6910, 163, 83, "Print",ExpressionUUID->"c2a9b472-9c40-4001-94b9-a20a27c004bb"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[118228, 2774, 174, 3, 53, "Subsection",ExpressionUUID->"9f289dd1-f193-462b-9caa-ddfb4680854c"],
+Cell[CellGroupData[{
+Cell[118427, 2781, 1684, 44, 131, "Input",ExpressionUUID->"ec755695-bfdc-42fa-957a-e1febb365059"],
+Cell[120114, 2827, 2251, 58, 47, "Print",ExpressionUUID->"a5c65d18-8792-4bb1-91de-f58b3ac1420c"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[122414, 2891, 168, 3, 53, "Subsection",ExpressionUUID->"7611c7df-c083-4551-8579-a44b7030e80f"],
+Cell[CellGroupData[{
+Cell[122607, 2898, 7499, 211, 601, "Input",ExpressionUUID->"479b35cf-a7c4-4b90-9d5a-1f2447d1cc8c"],
+Cell[130109, 3111, 36703, 751, 285, "Output",ExpressionUUID->"706bbf91-335a-4569-8f2b-f3d96b031620"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
